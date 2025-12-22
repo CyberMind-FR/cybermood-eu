@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecuBox - Cybersécurité Tout-en-Un | GlobalScale Inside</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --sb-bg: #0a0a12;
+  --sb-bg-secondary: #0f1019;
+  --sb-bg-card: #1a1a24;
+  --sb-border: #2a2a3a;
+  --sb-text: #f1f5f9;
+  --sb-text-muted: #94a3b8;
+  --sb-text-dim: #64748b;
+  --sb-green: #10b981;
+  --sb-cyan: #06b6d4;
+  --sb-blue: #3b82f6;
+  --sb-purple: #8b5cf6;
+  --sb-orange: #f97316;
+  --sb-gradient: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--sb-text); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  background: radial-gradient(ellipse at 20% 20%, rgba(16,185,129,0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.08) 0%, transparent 50%);
+}
+.hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-badge {
+  display: inline-block; padding: 8px 20px;
+  background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4);
+  border-radius: 30px; font-size: 14px; font-weight: 600; color: var(--sb-green); margin-bottom: 24px;
+}
+.hero-title { font-size: 64px; font-weight: 800; background: var(--sb-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+.hero-subtitle { font-size: 24px; color: var(--sb-text-muted); margin-bottom: 12px; }
+.hero-tagline { font-size: 16px; color: var(--sb-text-dim); margin-bottom: 32px; }
+.hero-features { list-style: none; margin-bottom: 32px; }
+.hero-features li { display: flex; align-items: center; gap: 12px; padding: 8px 0; font-size: 15px; color: var(--sb-text-muted); }
+.hero-features li::before { content: ''; width: 10px; height: 10px; border-radius: 50%; }
+.hero-features li:nth-child(1)::before { background: var(--sb-green); }
+.hero-features li:nth-child(2)::before { background: var(--sb-cyan); }
+.hero-features li:nth-child(3)::before { background: var(--sb-blue); }
+.hero-features li:nth-child(4)::before { background: var(--sb-purple); }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+  border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn-primary { background: var(--sb-gradient); color: white; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(16,185,129,0.4); }
+.btn-secondary { background: var(--sb-bg-card); color: var(--sb-text); border: 1px solid var(--sb-border); }
+.btn-secondary:hover { border-color: var(--sb-cyan); }
+.hero-price { margin-top: 16px; font-size: 14px; color: var(--sb-text-dim); }
+.hero-price strong { font-size: 24px; color: var(--sb-green); font-family: 'JetBrains Mono', monospace; }
+
+/* Sections */
+.section { padding: 100px 0; }
+.section-alt { background: var(--sb-bg-secondary); }
+.section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.section-badge { display: inline-block; padding: 6px 16px; background: rgba(6,182,212,0.15); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--sb-cyan); margin-bottom: 16px; }
+.section-title { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+.section-desc { font-size: 17px; color: var(--sb-text-muted); }
+
+/* Modules Grid */
+.modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.module-card {
+  background: var(--sb-bg-card); border: 1px solid var(--sb-border); border-radius: 14px;
+  padding: 24px; position: relative; overflow: hidden; transition: all 0.3s;
+}
+.module-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--module-color); }
+.module-card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0,0,0,0.25); border-color: var(--module-color); }
+.module-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.module-icon { font-size: 32px; }
+.module-links { display: flex; gap: 8px; }
+.module-links a {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--sb-border); border-radius: 6px;
+  font-size: 11px; color: var(--sb-text-muted); text-decoration: none; transition: all 0.2s;
+}
+.module-links a:hover { color: var(--sb-cyan); border-color: var(--sb-cyan); background: rgba(6,182,212,0.1); }
+.module-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.module-desc { font-size: 13px; color: var(--sb-text-muted); margin-bottom: 14px; line-height: 1.5; }
+.module-features { display: flex; flex-wrap: wrap; gap: 6px; }
+.module-feature { padding: 4px 10px; background: var(--sb-bg); border-radius: 6px; font-size: 11px; color: var(--sb-text-dim); }
+
+/* Hardware Grid */
+.hardware-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.hardware-card {
+  background: var(--sb-bg-card); border: 1px solid var(--sb-border); border-radius: 16px;
+  padding: 28px; position: relative; overflow: hidden; transition: all 0.3s;
+}
+.hardware-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--card-color); }
+.hardware-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-color: var(--card-color); }
+.hardware-card.featured { border-color: var(--sb-green); }
+.hardware-card.featured::after {
+  content: '⭐ POPULAIRE'; position: absolute; top: 16px; right: -30px;
+  background: var(--sb-gradient); color: white; font-size: 10px; font-weight: 700;
+  padding: 4px 40px; transform: rotate(45deg);
+}
+.hardware-icon { font-size: 36px; margin-bottom: 12px; }
+.hardware-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.hardware-base { font-size: 12px; color: var(--sb-text-dim); margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+.hardware-desc { font-size: 13px; color: var(--sb-text-muted); margin-bottom: 16px; }
+.hardware-specs { font-size: 12px; color: var(--sb-text-dim); margin-bottom: 16px; }
+.hardware-specs span { display: block; padding: 3px 0; }
+.hardware-price { font-family: 'JetBrains Mono', monospace; }
+.hardware-price .amount { font-size: 32px; font-weight: 800; color: var(--sb-green); }
+.hardware-price .note { font-size: 11px; color: var(--sb-text-dim); }
+
+/* Subscriptions */
+.subs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.sub-card {
+  background: var(--sb-bg-card); border: 1px solid var(--sb-border); border-radius: 16px;
+  padding: 28px; text-align: center; transition: all 0.3s; position: relative;
+}
+.sub-card.featured { border-color: var(--sb-green); background: linear-gradient(180deg, rgba(16,185,129,0.1), var(--sb-bg-card)); }
+.sub-card:hover { transform: translateY(-3px); }
+.sub-tier { font-size: 12px; font-weight: 600; color: var(--sb-text-dim); margin-bottom: 8px; }
+.sub-name { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.sub-price { font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
+.sub-price .amount { font-size: 36px; font-weight: 800; color: var(--sb-green); }
+.sub-price .period { font-size: 14px; color: var(--sb-text-dim); }
+.sub-annual { font-size: 12px; color: var(--sb-cyan); margin-bottom: 20px; }
+.sub-features { list-style: none; text-align: left; margin-bottom: 20px; }
+.sub-features li { font-size: 13px; color: var(--sb-text-muted); padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; }
+.sub-features li::before { content: '✓'; color: var(--sb-green); font-weight: 700; flex-shrink: 0; }
+
+/* Timeline */
+.timeline { max-width: 700px; margin: 0 auto; position: relative; padding-left: 40px; }
+.timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: var(--sb-gradient); border-radius: 2px; }
+.timeline-item { position: relative; padding: 20px 0; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -33px; top: 26px;
+  width: 16px; height: 16px; background: var(--sb-green); border-radius: 50%; border: 3px solid var(--sb-bg);
+}
+.timeline-item.done::before { background: #22c55e; }
+.timeline-item.current::before { background: var(--sb-orange); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0.4); } 50% { box-shadow: 0 0 0 8px rgba(249,115,22,0); } }
+.timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--sb-cyan); margin-bottom: 6px; }
+.timeline-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.timeline-desc { font-size: 13px; color: var(--sb-text-muted); }
+
+/* Newsletter */
+.newsletter {
+  background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(6,182,212,0.08));
+  border: 1px solid rgba(16,185,129,0.3); border-radius: 20px; padding: 50px; text-align: center;
+}
+.newsletter-title { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+.newsletter-desc { font-size: 16px; color: var(--sb-text-muted); margin-bottom: 24px; }
+.newsletter-form { display: flex; gap: 12px; max-width: 450px; margin: 0 auto; }
+.newsletter-input {
+  flex: 1; padding: 14px 20px; background: var(--sb-bg); border: 1px solid var(--sb-border);
+  border-radius: 10px; color: var(--sb-text); font-size: 15px;
+}
+.newsletter-input:focus { outline: none; border-color: var(--sb-green); }
+
+/* Footer */
+.footer { padding: 50px 0; border-top: 1px solid var(--sb-border); text-align: center; }
+.footer-brand { font-size: 24px; font-weight: 800; background: var(--sb-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+.footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+.footer-links a { color: var(--sb-text-muted); text-decoration: none; font-size: 14px; }
+.footer-links a:hover { color: var(--sb-cyan); }
+.footer-copy { font-size: 12px; color: var(--sb-text-dim); }
+
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; text-align: center; }
+  .hero-title { font-size: 42px; }
+  .hero-features { display: inline-block; text-align: left; }
+  .hero-cta { justify-content: center; }
+  .newsletter-form { flex-direction: column; }
+}
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div>
+        <span class="hero-badge">🛡️ Campagne Participative Q2 2027 — <a href="campaign.html" style="color: inherit; text-decoration: underline;">En savoir plus</a></span>
+        <h1 class="hero-title">SecuBox</h1>
+        <p class="hero-subtitle">Cybersécurité Tout-en-Un</p>
+        <p class="hero-tagline">13 modules open source • Hardware GlobalScale • Abonnements flexibles</p>
+        
+        <ul class="hero-features">
+          <li><strong>CrowdSec</strong> — Threat Intelligence collaborative</li>
+          <li><strong>WireGuard</strong> — VPN nouvelle génération</li>
+          <li><strong>Bandwidth Manager</strong> — QoS & quotas intelligents</li>
+          <li><strong>+ 10 modules</strong> — Auth, Media, VHost, Netdata, Netifyd...</li>
+        </ul>
+        
+        <div class="hero-cta">
+          <a href="campaign.html" class="btn btn-primary">🚀 Campagne Participative</a>
+          <a href="#modules" class="btn btn-secondary">Voir les Modules</a>
+        </div>
+        <p class="hero-price">À partir de <strong>199€</strong> + abonnements optionnels</p>
+      </div>
+      <div style="text-align: center;">
+        <img src="/images/secubox-device.png" alt="SecuBox" style="max-width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modules -->
+<section class="section section-alt" id="modules">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">🧩 13 Modules Open Source</span>
+      <h2 class="section-title">Une Suite Complète de Sécurité</h2>
+      <p class="section-desc">Chaque module est disponible gratuitement sur GitHub. SecuBox les réunit dans une appliance optimisée et préconfigurée.</p>
+    </div>
+    
+    <div class="modules-grid">
+      <div class="module-card" style="--module-color: #22c55e;">
+        <div class="module-header">
+          <div class="module-icon">🛡️</div>
+          <div class="module-links">
+            <a href="demo-crowdsec.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-crowdsec-dashboard" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">CrowdSec Dashboard</h3>
+        <p class="module-desc">Cybersécurité collaborative avec threat intelligence mondiale. Bloquez les attaquants avant qu'ils ne frappent grâce à 15M+ IPs malveillantes.</p>
+        <div class="module-features">
+          <span class="module-feature">Threat Intel</span>
+          <span class="module-feature">Real-time</span>
+          <span class="module-feature">Bouncer</span>
+          <span class="module-feature">Alertes</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #00ab44;">
+        <div class="module-header">
+          <div class="module-icon">📊</div>
+          <div class="module-links">
+            <a href="demo-netdata.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-netdata-dashboard" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Netdata Dashboard</h3>
+        <p class="module-desc">Monitoring temps réel avec 1000+ métriques collectées automatiquement. Alertes configurables sur CPU, RAM, disque, réseau et température.</p>
+        <div class="module-features">
+          <span class="module-feature">1000+ Métriques</span>
+          <span class="module-feature">Temps réel</span>
+          <span class="module-feature">Alertes</span>
+          <span class="module-feature">Historique</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #8b5cf6;">
+        <div class="module-header">
+          <div class="module-icon">🔍</div>
+          <div class="module-links">
+            <a href="demo-netifyd.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-netifyd-dashboard" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Netifyd Dashboard</h3>
+        <p class="module-desc">Deep Packet Inspection pour identifier chaque application sur votre réseau. Reconnaissance de 300+ apps : Netflix, YouTube, Teams, etc.</p>
+        <div class="module-features">
+          <span class="module-feature">300+ Apps</span>
+          <span class="module-feature">DPI</span>
+          <span class="module-feature">Bande passante</span>
+          <span class="module-feature">Catégories</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #06b6d4;">
+        <div class="module-header">
+          <div class="module-icon">🔒</div>
+          <div class="module-links">
+            <a href="demo-wireguard.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-wireguard-dashboard" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">WireGuard Dashboard</h3>
+        <p class="module-desc">VPN moderne ultra-performant. Connectez-vous à votre réseau de n'importe où avec QR codes instantanés pour configuration mobile.</p>
+        <div class="module-features">
+          <span class="module-feature">QR Codes</span>
+          <span class="module-feature">Multi-peers</span>
+          <span class="module-feature">Crypto moderne</span>
+          <span class="module-feature">Mobile</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #f97316;">
+        <div class="module-header">
+          <div class="module-icon">🔀</div>
+          <div class="module-links">
+            <a href="demo-network-modes.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-network-modes" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Network Modes</h3>
+        <p class="module-desc">Changez de topologie réseau en un clic : Routeur classique, Bridge transparent, Point d'Accès WiFi, Répéteur ou Travel Router.</p>
+        <div class="module-features">
+          <span class="module-feature">5 Modes</span>
+          <span class="module-feature">Auto-config</span>
+          <span class="module-feature">Backup</span>
+          <span class="module-feature">Rollback</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #ef4444;">
+        <div class="module-header">
+          <div class="module-icon">👁️</div>
+          <div class="module-links">
+            <a href="demo-client-guardian.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-client-guardian" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Client Guardian</h3>
+        <p class="module-desc">Contrôle d'accès réseau nouvelle génération. Quarantaine automatique, portail captif personnalisable, contrôle parental et alertes SMS/Email.</p>
+        <div class="module-features">
+          <span class="module-feature">NAC</span>
+          <span class="module-feature">Portail Captif</span>
+          <span class="module-feature">Parental</span>
+          <span class="module-feature">Alertes SMS</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #6366f1;">
+        <div class="module-header">
+          <div class="module-icon">🎛️</div>
+          <div class="module-links">
+            <a href="demo-secubox-hub.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-system-hub" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">System Hub</h3>
+        <p class="module-desc">Centre de contrôle unifié pour tous vos modules. Health reports automatisés, assistance remote RustDesk et collecte de diagnostics en un clic.</p>
+        <div class="module-features">
+          <span class="module-feature">Dashboard unifié</span>
+          <span class="module-feature">Health Reports</span>
+          <span class="module-feature">RustDesk</span>
+          <span class="module-feature">Diagnostics</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #a855f7;">
+        <div class="module-header">
+          <div class="module-icon">⚡</div>
+          <div class="module-links">
+            <a href="demo-bandwidth.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-bandwidth-manager" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Bandwidth Manager</h3>
+        <p class="module-desc">QoS avancée avec CAKE, quotas par client, détection automatique des médias. Priorisez gaming et VoIP sur les téléchargements.</p>
+        <div class="module-features">
+          <span class="module-feature">8 classes QoS</span>
+          <span class="module-feature">Quotas</span>
+          <span class="module-feature">CAKE/SQM</span>
+          <span class="module-feature">Auto-detect</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #06b6d4;">
+        <div class="module-header">
+          <div class="module-icon">🔐</div>
+          <div class="module-links">
+            <a href="demo-auth.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-auth-guardian" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Auth Guardian</h3>
+        <p class="module-desc">Portail captif OAuth avec Google/GitHub, système de vouchers pour invités, gestion des sessions et cookies sécurisés.</p>
+        <div class="module-features">
+          <span class="module-feature">OAuth2</span>
+          <span class="module-feature">Vouchers</span>
+          <span class="module-feature">Sessions</span>
+          <span class="module-feature">Splash Page</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #ef4444;">
+        <div class="module-header">
+          <div class="module-icon">🎬</div>
+          <div class="module-links">
+            <a href="demo-media.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-media-flow" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Media Flow</h3>
+        <p class="module-desc">Détection des flux streaming Netflix, YouTube, Twitch. Monitoring VoIP Zoom/Teams. Analyse qualité SD/HD/4K en temps réel.</p>
+        <div class="module-features">
+          <span class="module-feature">Streaming DPI</span>
+          <span class="module-feature">VoIP Monitor</span>
+          <span class="module-feature">HLS/DASH</span>
+          <span class="module-feature">Qualité</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #10b981;">
+        <div class="module-header">
+          <div class="module-icon">🌐</div>
+          <div class="module-links">
+            <a href="demo-vhost.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-vhost-manager" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">VHost Manager</h3>
+        <p class="module-desc">Reverse proxy pour vos services locaux : Nextcloud, GitLab, Jellyfin. SSL Let's Encrypt automatique et redirection intelligente.</p>
+        <div class="module-features">
+          <span class="module-feature">Reverse Proxy</span>
+          <span class="module-feature">SSL Auto</span>
+          <span class="module-feature">Local SaaS</span>
+          <span class="module-feature">Nginx</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #14b8a6;">
+        <div class="module-header">
+          <div class="module-icon">🚦</div>
+          <div class="module-links">
+            <a href="demo-traffic-shaper.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-traffic-shaper" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">Traffic Shaper</h3>
+        <p class="module-desc">Contrôle avancé du trafic avec CAKE, fq_codel, HTB. Anti-bufferbloat, marquage DSCP et latence optimisée pour gaming.</p>
+        <div class="module-features">
+          <span class="module-feature">CAKE</span>
+          <span class="module-feature">Anti-bloat</span>
+          <span class="module-feature">DSCP</span>
+          <span class="module-feature">Latence</span>
+        </div>
+      </div>
+      
+      <div class="module-card" style="--module-color: #ec4899;">
+        <div class="module-header">
+          <div class="module-icon">💾</div>
+          <div class="module-links">
+            <a href="demo-cdn-cache.html">🎮 Démo</a>
+            <a href="https://github.com/cybermood-eu/luci-app-cdn-cache" target="_blank">💻 GitHub</a>
+          </div>
+        </div>
+        <h3 class="module-name">CDN Cache</h3>
+        <p class="module-desc">Proxy cache local intelligent. Économisez 40-60% de bande passante en cachant les mises à jour Windows, Linux, apps et contenus web statiques.</p>
+        <div class="module-features">
+          <span class="module-feature">Hit Ratio 70%+</span>
+          <span class="module-feature">Policies</span>
+          <span class="module-feature">Statistiques</span>
+          <span class="module-feature">Nginx</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hardware -->
+<section class="section" id="hardware">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">🔧 Hardware GlobalScale</span>
+      <h2 class="section-title">Choisissez Votre SecuBox</h2>
+      <p class="section-desc">4 plateformes éprouvées, du studio à l'entreprise. Marvell Armada Inside.</p>
+    </div>
+    
+    <div class="hardware-grid">
+      <div class="hardware-card" style="--card-color: #10b981;">
+        <div class="hardware-icon">☕</div>
+        <h3 class="hardware-name">SecuBox Espresso</h3>
+        <div class="hardware-base">ESPRESSObin V7</div>
+        <p class="hardware-desc">Parfait pour appartement, studio ou télétravailleur solo.</p>
+        <div class="hardware-specs">
+          <span>🔲 Dual-Core A53 @1.2GHz</span>
+          <span>💾 1-2GB DDR4 + eMMC/SD</span>
+          <span>🌐 1 WAN + 2 LAN Gigabit</span>
+          <span>⚡ < 5W</span>
+        </div>
+        <div class="hardware-price">
+          <span class="amount">199€</span>
+          <span class="note">à 249€ selon config</span>
+        </div>
+      </div>
+      
+      <div class="hardware-card featured" style="--card-color: #06b6d4;">
+        <div class="hardware-icon">☕</div>
+        <h3 class="hardware-name">SecuBox Espresso Ultra</h3>
+        <div class="hardware-base">ESPRESSObin Ultra</div>
+        <p class="hardware-desc">Idéal pour maison connectée et famille avec WiFi intégré.</p>
+        <div class="hardware-specs">
+          <span>🔲 Dual-Core A53 @1.2GHz</span>
+          <span>💾 1-2GB DDR4 + M.2</span>
+          <span>🌐 1 WAN PoE + 4 LAN Gigabit</span>
+          <span>📶 WiFi 802.11ac intégré</span>
+          <span>⚡ < 8W</span>
+        </div>
+        <div class="hardware-price">
+          <span class="amount">299€</span>
+          <span class="note">à 349€ avec PoE</span>
+        </div>
+      </div>
+      
+      <div class="hardware-card" style="--card-color: #8b5cf6;">
+        <div class="hardware-icon">🔌</div>
+        <h3 class="hardware-name">SecuBox Sheeva</h3>
+        <div class="hardware-base">Sheeva64 WiFi</div>
+        <p class="hardware-desc">Format plug mural ultra-discret pour Airbnb ou bureau.</p>
+        <div class="hardware-specs">
+          <span>🔲 Dual-Core A53 @1.2GHz</span>
+          <span>💾 1GB DDR4 + 4GB eMMC</span>
+          <span>🌐 2x Gigabit Ethernet</span>
+          <span>📶 WiFi ac + Bluetooth 4.2</span>
+          <span>🔌 Plug mural intégré</span>
+        </div>
+        <div class="hardware-price">
+          <span class="amount">249€</span>
+          <span class="note">à 299€ avec WiFi</span>
+        </div>
+      </div>
+      
+      <div class="hardware-card" style="--card-color: #f97316;">
+        <div class="hardware-icon">☕</div>
+        <h3 class="hardware-name">SecuBox Mocha</h3>
+        <div class="hardware-base">MOCHAbin</div>
+        <p class="hardware-desc">Puissance quad-core pour PME, multi-sites et edge computing.</p>
+        <div class="hardware-specs">
+          <span>🔲 Quad-Core A72 @1.4GHz</span>
+          <span>💾 4-8GB DDR4 + M.2 + SATA</span>
+          <span>🌐 4 LAN + WAN + SFP+ 10G</span>
+          <span>📶 Option WiFi 6 + 5G</span>
+          <span>⚡ < 12W</span>
+        </div>
+        <div class="hardware-price">
+          <span class="amount">449€</span>
+          <span class="note">à 799€ full options</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Subscriptions -->
+<section class="section section-alt" id="subscriptions">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">💳 Abonnements Care</span>
+      <h2 class="section-title">Services & Support</h2>
+      <p class="section-desc">Le logiciel est 100% gratuit. Les abonnements financent le développement continu et ajoutent des services premium.</p>
+    </div>
+    
+    <div class="subs-grid">
+      <div class="sub-card">
+        <div class="sub-tier">🆓</div>
+        <h3 class="sub-name">Free</h3>
+        <div class="sub-price">
+          <span class="amount">0€</span>
+          <span class="period">/mois</span>
+        </div>
+        <div class="sub-annual">Gratuit à vie</div>
+        <ul class="sub-features">
+          <li>7 modules inclus</li>
+          <li>Mises à jour sécurité</li>
+          <li>CrowdSec Community</li>
+          <li>Forum communautaire</li>
+        </ul>
+      </div>
+      
+      <div class="sub-card">
+        <div class="sub-tier">🥉</div>
+        <h3 class="sub-name">Basic</h3>
+        <div class="sub-price">
+          <span class="amount">9€</span>
+          <span class="period">/mois</span>
+        </div>
+        <div class="sub-annual">ou 89€/an (2 mois offerts)</div>
+        <ul class="sub-features">
+          <li>Support email 48h</li>
+          <li>MAJ prioritaires</li>
+          <li>Accès bêta features</li>
+          <li>1 session RustDesk/mois</li>
+        </ul>
+      </div>
+      
+      <div class="sub-card featured">
+        <div class="sub-tier">🥈</div>
+        <h3 class="sub-name">Pro</h3>
+        <div class="sub-price">
+          <span class="amount">19€</span>
+          <span class="period">/mois</span>
+        </div>
+        <div class="sub-annual">ou 189€/an (2 mois offerts)</div>
+        <ul class="sub-features">
+          <li>Support email 24h</li>
+          <li>Threat Intel Premium</li>
+          <li>Backup cloud chiffré</li>
+          <li>Monitoring 24/7</li>
+          <li>RustDesk illimité</li>
+        </ul>
+      </div>
+      
+      <div class="sub-card">
+        <div class="sub-tier">🥇</div>
+        <h3 class="sub-name">Enterprise</h3>
+        <div class="sub-price">
+          <span class="amount">49€</span>
+          <span class="period">/mois</span>
+        </div>
+        <div class="sub-annual">ou 490€/an (2 mois offerts)</div>
+        <ul class="sub-features">
+          <li>Support téléphone</li>
+          <li>SLA < 4h critique</li>
+          <li>Multi-sites (5 SecuBox)</li>
+          <li>Intégration SIEM</li>
+          <li>Formation 2h visio</li>
+        </ul>
+      </div>
+      
+      <div class="sub-card">
+        <div class="sub-tier">🏢</div>
+        <h3 class="sub-name">Corporate</h3>
+        <div class="sub-price">
+          <span class="amount">149€+</span>
+          <span class="period">/mois</span>
+        </div>
+        <div class="sub-annual">Sur devis</div>
+        <ul class="sub-features">
+          <li>Support 24/7</li>
+          <li>SLA < 1h</li>
+          <li>Sites illimités</li>
+          <li>Développements sur mesure</li>
+          <li>Audit pentest annuel</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">🗓️ Calendrier</span>
+      <h2 class="section-title">Roadmap Projet</h2>
+    </div>
+    
+    <div class="timeline">
+      <div class="timeline-item done">
+        <div class="timeline-date">Q1 2026</div>
+        <h4 class="timeline-title">Développement Modules ✅</h4>
+        <p class="timeline-desc">7 dashboards LuCI finalisés</p>
+      </div>
+      <div class="timeline-item current">
+        <div class="timeline-date">Q2-Q3 2026</div>
+        <h4 class="timeline-title">Intégration Hardware</h4>
+        <p class="timeline-desc">Tests sur ESPRESSObin, Sheeva64, MOCHAbin</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Q4 2026</div>
+        <h4 class="timeline-title">Beta Testeurs</h4>
+        <p class="timeline-desc">100 unités pour la communauté</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Q2 2027</div>
+        <h4 class="timeline-title">🚀 <a href="campaign.html" style="color: inherit;">Lancement Campagne</a></h4>
+        <p class="timeline-desc">Crowdfunding objectif 50 000€</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Q4 2027</div>
+        <h4 class="timeline-title">📦 Livraison Backers</h4>
+        <p class="timeline-desc">Expédition des SecuBox</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section section-alt" id="newsletter">
+  <div class="container">
+    <div class="newsletter">
+      <h2 class="newsletter-title">🚀 Soyez les Premiers Informés</h2>
+      <p class="newsletter-desc">Inscrivez-vous pour l'annonce du lancement et les prix early bird.</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="votre@email.com" required>
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">SecuBox</div>
+    <div class="footer-links">
+      <a href="https://cybermind.fr">CyberMind.fr</a>
+      <a href="https://github.com/gkerma">GitHub</a>
+      <a href="campaign.html">Campagne</a>
+      <a href="https://globalscaletechnologies.com">GlobalScale</a>
+      <a href="/cdn-cgi/l/email-protection#ea8985849e8b899eaa8993888f988783848ec48c98">Contact</a>
+    </div>
+    <p class="footer-copy"><a href="https://cybermood.eu">CyberMood.eu</a> © 2025 <a href="https://cybermind.fr">CyberMind.fr</a> — Open Source Apache-2.0 — 🇫🇷 Made in France with ❤️

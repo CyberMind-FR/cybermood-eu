@@ -869,7 +869,7 @@
                 <p>De la sécurité au monitoring, en passant par la gestion de bande passante et l'authentification.</p>
             </div>
             
-            <div class="modules-grid">
+                        <div class="modules-grid">
                 <!-- Bandwidth Manager -->
                 <div class="module-card" style="--module-color: #a855f7;">
                     <div class="module-icon">⚡</div>
@@ -880,11 +880,10 @@
                         <li>Quotas journaliers/mensuels</li>
                         <li>Throttling automatique</li>
                         <li>Détection VoIP, Gaming, Streaming</li>
-                        <li>Planification horaire</li>
                     </ul>
                     <div class="module-links">
                         <a href="demo-bandwidth.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-bandwidth-manager" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-bandwidth-manager" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -898,11 +897,10 @@
                         <li>OAuth2 (Google, GitHub...)</li>
                         <li>Système de vouchers</li>
                         <li>Gestion des sessions/cookies</li>
-                        <li>Bypass MAC/IP/Domain</li>
                     </ul>
                     <div class="module-links">
                         <a href="demo-auth.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-auth-guardian" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-auth-guardian" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -915,12 +913,11 @@
                         <li>Détection Netflix, YouTube, Twitch</li>
                         <li>Protocoles RTSP, HLS, DASH</li>
                         <li>Monitoring VoIP (Zoom, Teams)</li>
-                        <li>Statistiques par service</li>
                         <li>Qualité de flux (SD/HD/4K)</li>
                     </ul>
                     <div class="module-links">
                         <a href="demo-media.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-media-flow" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-media-flow" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -934,11 +931,10 @@
                         <li>Redirection services externes</li>
                         <li>SSL Let's Encrypt automatique</li>
                         <li>Reverse proxy nginx</li>
-                        <li>DNS interception</li>
                     </ul>
                     <div class="module-links">
                         <a href="demo-vhost.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-vhost-manager" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-vhost-manager" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -955,7 +951,7 @@
                     </ul>
                     <div class="module-links">
                         <a href="demo-crowdsec.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-crowdsec-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-crowdsec-dashboard" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -972,7 +968,7 @@
                     </ul>
                     <div class="module-links">
                         <a href="demo-wireguard.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-wireguard-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-wireguard-dashboard" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -989,7 +985,7 @@
                     </ul>
                     <div class="module-links">
                         <a href="demo-netdata.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-netdata-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-netdata-dashboard" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
@@ -1006,24 +1002,92 @@
                     </ul>
                     <div class="module-links">
                         <a href="demo-netifyd.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermind-fr/luci-app-netifyd-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-netifyd-dashboard" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
                 
-                <!-- More modules coming -->
-                <div class="module-card" style="--module-color: #64748b;">
-                    <div class="module-icon">➕</div>
-                    <h3>Et plus encore...</h3>
-                    <p>Network Modes, Client Guardian, System Hub, CDN Cache, Traffic Shaper...</p>
+                <!-- Client Guardian -->
+                <div class="module-card" style="--module-color: #f97316;">
+                    <div class="module-icon">👥</div>
+                    <h3>Client Guardian</h3>
+                    <p>Contrôle d'accès et gestion des clients réseau.</p>
                     <ul class="module-features">
-                        <li>Network Modes - Configuration réseau</li>
-                        <li>Client Guardian - Contrôle d'accès</li>
-                        <li>System Hub - Centre de contrôle</li>
-                        <li>CDN Cache - Optimisation bande passante</li>
+                        <li>Liste des clients connectés</li>
+                        <li>Blocage/limitation par MAC</li>
+                        <li>Groupes et règles horaires</li>
+                        <li>Contrôle parental</li>
                     </ul>
                     <div class="module-links">
-                        <a href="#installation" class="module-link module-link-demo">Installer</a>
-                        <a href="https://github.com/cybermind-fr" class="module-link module-link-github">Tous les repos</a>
+                        <a href="demo-client-guardian.html" class="module-link module-link-demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-client-guardian" class="module-link module-link-github">GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Network Modes -->
+                <div class="module-card" style="--module-color: #8b5cf6;">
+                    <div class="module-icon">🌐</div>
+                    <h3>Network Modes</h3>
+                    <p>Configuration réseau simplifiée : NAT, Bridge, AP...</p>
+                    <ul class="module-features">
+                        <li>Routeur NAT / Bridge</li>
+                        <li>Point d'accès WiFi</li>
+                        <li>VPN Gateway</li>
+                        <li>Multi-WAN / Failover</li>
+                    </ul>
+                    <div class="module-links">
+                        <a href="demo-network-modes.html" class="module-link module-link-demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-network-modes" class="module-link module-link-github">GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Traffic Shaper -->
+                <div class="module-card" style="--module-color: #14b8a6;">
+                    <div class="module-icon">🚦</div>
+                    <h3>Traffic Shaper</h3>
+                    <p>Contrôle avancé du trafic avec CAKE et anti-bufferbloat.</p>
+                    <ul class="module-features">
+                        <li>CAKE / fq_codel / SQM</li>
+                        <li>Priorités DSCP</li>
+                        <li>Anti-bufferbloat</li>
+                        <li>Latence optimisée</li>
+                    </ul>
+                    <div class="module-links">
+                        <a href="demo-traffic-shaper.html" class="module-link module-link-demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-traffic-shaper" class="module-link module-link-github">GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- CDN Cache -->
+                <div class="module-card" style="--module-color: #ec4899;">
+                    <div class="module-icon">💾</div>
+                    <h3>CDN Cache</h3>
+                    <p>Cache local pour économiser la bande passante.</p>
+                    <ul class="module-features">
+                        <li>Cache Netflix, YouTube, Spotify</li>
+                        <li>Updates OS (Apple, Microsoft)</li>
+                        <li>Économies de bande passante</li>
+                        <li>Statistiques hit/miss</li>
+                    </ul>
+                    <div class="module-links">
+                        <a href="demo-cdn-cache.html" class="module-link module-link-demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-cdn-cache" class="module-link module-link-github">GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- SecuBox Hub -->
+                <div class="module-card" style="--module-color: #6366f1;">
+                    <div class="module-icon">🛡️</div>
+                    <h3>SecuBox Hub</h3>
+                    <p>Centre de contrôle unifié pour tous les modules.</p>
+                    <ul class="module-features">
+                        <li>Vue d'ensemble système</li>
+                        <li>État de tous les modules</li>
+                        <li>Activité et alertes</li>
+                        <li>Actions rapides</li>
+                    </ul>
+                    <div class="module-links">
+                        <a href="demo-secubox-hub.html" class="module-link module-link-demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-secubox" class="module-link module-link-github">GitHub</a>
                     </div>
                 </div>
             </div>

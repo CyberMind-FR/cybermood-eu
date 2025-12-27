@@ -436,11 +436,13 @@ const I18N = {
     }
 };
 
-// Auto-initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => I18N.init());
-} else {
-    I18N.init();
+// Auto-initialize when DOM is ready (unless manual init is requested)
+if (!window.I18N_MANUAL_INIT) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => I18N.init());
+    } else {
+        I18N.init();
+    }
 }
 
 // Export for use in other scripts

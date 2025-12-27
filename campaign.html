@@ -826,23 +826,45 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 <!-- Multi-language System -->
 <script>
-// Load campaign translations
-if (window.I18N) {
-  // Override loadTranslations to load campaign-specific translations
-  const originalLoadTranslations = I18N.loadTranslations.bind(I18N);
+// Prevent auto-init - we'll init manually after setting up campaign override
+window.I18N_MANUAL_INIT = true;
+</script>
+<script src="/i18n.js"></script>
+<script>
+// Override loadTranslations to load campaign-specific translations
+(async function() {
+  if (!window.I18N) {
+    console.error('I18N not loaded');
+    return;
+  }
+
+  // Override to load campaign.json instead
   I18N.loadTranslations = async function(lang) {
     try {
       const response = await fetch(`/i18n/campaign.json`);
       if (!response.ok) throw new Error(`Failed to load campaign.json`);
       const allTranslations = await response.json();
-      this.translations = { campaign: allTranslations[lang] || allTranslations['fr'] };
+
+      // Set translations for the selected language, wrapped in 'campaign' namespace
+      // because HTML uses keys like "campaign.nav.rewards"
+      this.translations = {
+        campaign: allTranslations[lang] || allTranslations['fr']
+      };
     } catch (error) {
       console.error(`Error loading campaign translations:`, error);
+      // Fallback to French if loading fails
+      if (lang !== 'fr') {
+        this.translations = {
+          campaign: allTranslations['fr']
+        };
+      }
     }
   };
-}
+
+  // Now initialize with campaign translations
+  await I18N.init();
+})();
 </script>
-<script src="/i18n.js"></script>
 
 </body>
 </html>

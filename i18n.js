@@ -16,7 +16,13 @@ const I18N = {
         'zh': { name: '中文', flag: '🇨🇳', rtl: false },
         'ja': { name: '日本語', flag: '🇯🇵', rtl: false },
         'ar': { name: 'العربية', flag: '🇸🇦', rtl: true },
-        'ru': { name: 'Русский', flag: '🇷🇺', rtl: false }
+        'ru': { name: 'Русский', flag: '🇷🇺', rtl: false },
+        'th': { name: 'ไทย', flag: '🇹🇭', rtl: false },
+        'ko': { name: '한국어', flag: '🇰🇷', rtl: false },
+        'hi': { name: 'हिन्दी', flag: '🇮🇳', rtl: false },
+        'tr': { name: 'Türkçe', flag: '🇹🇷', rtl: false },
+        'uk': { name: 'Українська', flag: '🇺🇦', rtl: false },
+        'he': { name: 'עברית', flag: '🇮🇱', rtl: true }
     },
 
     currentLang: 'fr',
@@ -95,17 +101,40 @@ const I18N = {
     },
 
     /**
-     * Get translation by key
+     * Get translation by key (supports array indices like "features[0]")
      */
     t(key, fallback = '') {
         const keys = key.split('.');
         let value = this.translations;
 
         for (const k of keys) {
-            if (value && typeof value === 'object' && k in value) {
-                value = value[k];
+            // Check if key contains array index like "features[0]"
+            const arrayMatch = k.match(/^(.+)\[(\d+)\]$/);
+
+            if (arrayMatch) {
+                // Extract array name and index
+                const [, arrayName, index] = arrayMatch;
+
+                // Access the array
+                if (value && typeof value === 'object' && arrayName in value) {
+                    value = value[arrayName];
+
+                    // Access the array element
+                    if (Array.isArray(value) && parseInt(index) < value.length) {
+                        value = value[parseInt(index)];
+                    } else {
+                        return fallback || key;
+                    }
+                } else {
+                    return fallback || key;
+                }
             } else {
-                return fallback || key;
+                // Normal object property access
+                if (value && typeof value === 'object' && k in value) {
+                    value = value[k];
+                } else {
+                    return fallback || key;
+                }
             }
         }
 

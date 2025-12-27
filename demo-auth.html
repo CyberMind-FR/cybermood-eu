@@ -433,7 +433,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="index.html" class="back-link">← Retour</a>
+        <a href="index.html" class="back-link" data-i18n="demo.backToMain">← Retour à l'accueil</a>
         <h1>🔐 Auth Guardian</h1>
         <p>Authentification, OAuth & Vouchers</p>
     </div>
@@ -661,5 +661,8 @@
             document.getElementById('stat-sessions').textContent = sessions;
         }, 5000);
     </script>
+
+    <!-- Multi-language System -->
+    <script src="/i18n.js"></script>
 </body>
 </html>

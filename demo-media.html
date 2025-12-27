@@ -72,7 +72,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="index.html" class="back-link">← Retour</a>
+        <a href="index.html" class="back-link" data-i18n="demo.backToMain">← Retour à l'accueil</a>
         <h1>🎬 Media Flow</h1>
         <p>Détection & Monitoring des flux multimédia</p>
     </div>
@@ -232,5 +232,8 @@
             document.getElementById('active-flows').textContent = 10 + Math.floor(Math.random() * 8);
         }, 2000);
     </script>
+
+    <!-- Multi-language System -->
+    <script src="/i18n.js"></script>
 </body>
 </html>

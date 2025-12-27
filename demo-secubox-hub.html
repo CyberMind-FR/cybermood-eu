@@ -79,7 +79,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="index.html" class="back-link">← Retour</a>
+        <a href="index.html" class="back-link" data-i18n="demo.backToMain">← Retour à l'accueil</a>
         <h1>🛡️ SecuBox Hub</h1>
         <p>Centre de contrôle unifié</p>
     </div>
@@ -372,5 +372,8 @@
             document.getElementById('clients-count').textContent = 10 + Math.floor(Math.random() * 5);
         }, 2000);
     </script>
+
+    <!-- Multi-language System -->
+    <script src="/i18n.js"></script>
 </body>
 </html>

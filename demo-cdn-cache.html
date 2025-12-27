@@ -75,7 +75,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="index.html" class="back-link">← Retour</a>
+        <a href="index.html" class="back-link" data-i18n="demo.backToMain">← Retour à l'accueil</a>
         <h1>💾 CDN Cache</h1>
         <p>Cache local pour optimiser la bande passante</p>
     </div>
@@ -270,5 +270,8 @@
             document.getElementById('misses').textContent = (2500 + Math.floor(Math.random() * 500)).toLocaleString();
         }, 3000);
     </script>
+
+    <!-- Multi-language System -->
+    <script src="/i18n.js"></script>
 </body>
 </html>

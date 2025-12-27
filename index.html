@@ -806,13 +806,13 @@
                 <span>SecuBox</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#modules">Modules</a></li>
-                <li><a href="#features">Fonctionnalités</a></li>
-                <li><a href="#demo">Démo</a></li>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#modules" data-i18n="nav.modules">Modules</a></li>
+                <li><a href="#features" data-i18n="nav.features">Fonctionnalités</a></li>
+                <li><a href="#demo" data-i18n="nav.demo">Démo</a></li>
+                <li><a href="#installation" data-i18n="nav.installation">Installation</a></li>
+                <li><a href="#blog" data-i18n="nav.blog">Blog</a></li>
             </ul>
-            <a href="https://github.com/cybermood-eu/secubox" class="nav-cta">
+            <a href="https://github.com/cybermood-eu/secubox" class="nav-cta" data-i18n="nav.github">
                 GitHub ↗
             </a>
         </div>
@@ -823,18 +823,18 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="animate-pulse">●</span>
-                Version 2.0 disponible
+                <span data-i18n="hero.badge">Version 2.0 disponible</span>
             </div>
-            <h1>Sécurisez votre réseau avec SecuBox</h1>
-            <p>
-                Suite complète de sécurité et gestion réseau pour OpenWrt. 
+            <h1 data-i18n="hero.title">Sécurisez votre réseau avec SecuBox</h1>
+            <p data-i18n="hero.subtitle">
+                Suite complète de sécurité et gestion réseau pour OpenWrt.
                 13 modules intégrés pour transformer votre routeur en centre de contrôle intelligent.
             </p>
             <div class="hero-buttons">
-                <a href="#demo" class="btn btn-primary">
+                <a href="#demo" class="btn btn-primary" data-i18n="hero.btnDemo">
                     🎮 Voir la démo
                 </a>
-                <a href="#installation" class="btn btn-secondary">
+                <a href="#installation" class="btn btn-secondary" data-i18n="hero.btnInstall">
                     📥 Installation
                 </a>
             </div>
@@ -842,19 +842,19 @@
             <div class="stats">
                 <div class="stat">
                     <div class="stat-value">13</div>
-                    <div class="stat-label">Modules</div>
+                    <div class="stat-label" data-i18n="hero.statsModules">Modules</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">4</div>
-                    <div class="stat-label">Architectures</div>
+                    <div class="stat-label" data-i18n="hero.statsArchs">Architectures</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">100%</div>
-                    <div class="stat-label">Open Source</div>
+                    <div class="stat-label" data-i18n="hero.statsOpenSource">Open Source</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">23.05</div>
-                    <div class="stat-label">OpenWrt</div>
+                    <div class="stat-label" data-i18n="hero.statsOpenWrt">OpenWrt</div>
                 </div>
             </div>
         </div>
@@ -864,230 +864,230 @@
     <section id="modules">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">📦 Modules</span>
-                <h2>13 modules pour tous vos besoins</h2>
-                <p>De la sécurité au monitoring, en passant par la gestion de bande passante et l'authentification.</p>
+                <span class="section-tag" data-i18n="modules.tag">📦 Modules</span>
+                <h2 data-i18n="modules.title">13 modules pour tous vos besoins</h2>
+                <p data-i18n="modules.subtitle">De la sécurité au monitoring, en passant par la gestion de bande passante et l'authentification.</p>
             </div>
             
                         <div class="modules-grid">
                 <!-- Bandwidth Manager -->
                 <div class="module-card" style="--module-color: #a855f7;">
                     <div class="module-icon">⚡</div>
-                    <h3>Bandwidth Manager</h3>
-                    <p>Gestion avancée de la bande passante avec QoS, quotas et détection automatique des médias.</p>
+                    <h3 data-i18n="modules.bandwidth.name">Bandwidth Manager</h3>
+                    <p data-i18n="modules.bandwidth.description">Gestion avancée de la bande passante avec QoS, quotas et détection automatique des médias.</p>
                     <ul class="module-features">
-                        <li>8 niveaux de priorité QoS</li>
-                        <li>Quotas journaliers/mensuels</li>
-                        <li>Throttling automatique</li>
-                        <li>Détection VoIP, Gaming, Streaming</li>
+                        <li data-i18n="modules.bandwidth.features[0]">8 niveaux de priorité QoS</li>
+                        <li data-i18n="modules.bandwidth.features[1]">Quotas journaliers/mensuels</li>
+                        <li data-i18n="modules.bandwidth.features[2]">Throttling automatique</li>
+                        <li data-i18n="modules.bandwidth.features[3]">Détection VoIP, Gaming, Streaming</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-bandwidth.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-bandwidth-manager" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-bandwidth.html" class="module-link module-link-demo" data-i18n="modules.bandwidth.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-bandwidth-manager" class="module-link module-link-github" data-i18n="modules.bandwidth.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Auth Guardian -->
                 <div class="module-card" style="--module-color: #06b6d4;">
                     <div class="module-icon">🔐</div>
-                    <h3>Auth Guardian</h3>
-                    <p>Authentification complète avec portail captif, OAuth et système de vouchers.</p>
+                    <h3 data-i18n="modules.auth.name">Auth Guardian</h3>
+                    <p data-i18n="modules.auth.description">Authentification complète avec portail captif, OAuth et système de vouchers.</p>
                     <ul class="module-features">
-                        <li>Portail captif personnalisable</li>
-                        <li>OAuth2 (Google, GitHub...)</li>
-                        <li>Système de vouchers</li>
-                        <li>Gestion des sessions/cookies</li>
+                        <li data-i18n="modules.auth.features[0]">Portail captif personnalisable</li>
+                        <li data-i18n="modules.auth.features[1]">OAuth2 (Google, GitHub...)</li>
+                        <li data-i18n="modules.auth.features[2]">Système de vouchers</li>
+                        <li data-i18n="modules.auth.features[3]">Gestion des sessions/cookies</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-auth.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-auth-guardian" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-auth.html" class="module-link module-link-demo" data-i18n="modules.auth.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-auth-guardian" class="module-link module-link-github" data-i18n="modules.auth.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Media Flow -->
                 <div class="module-card" style="--module-color: #ef4444;">
                     <div class="module-icon">🎬</div>
-                    <h3>Media Flow</h3>
-                    <p>Détection et monitoring des flux multimédia en temps réel.</p>
+                    <h3 data-i18n="modules.media.name">Media Flow</h3>
+                    <p data-i18n="modules.media.description">Détection et monitoring des flux multimédia en temps réel.</p>
                     <ul class="module-features">
-                        <li>Détection Netflix, YouTube, Twitch</li>
-                        <li>Protocoles RTSP, HLS, DASH</li>
-                        <li>Monitoring VoIP (Zoom, Teams)</li>
-                        <li>Qualité de flux (SD/HD/4K)</li>
+                        <li data-i18n="modules.media.features[0]">Détection Netflix, YouTube, Twitch</li>
+                        <li data-i18n="modules.media.features[1]">Protocoles RTSP, HLS, DASH</li>
+                        <li data-i18n="modules.media.features[2]">Monitoring VoIP (Zoom, Teams)</li>
+                        <li data-i18n="modules.media.features[3]">Qualité de flux (SD/HD/4K)</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-media.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-media-flow" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-media.html" class="module-link module-link-demo" data-i18n="modules.media.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-media-flow" class="module-link module-link-github" data-i18n="modules.media.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- VHost Manager -->
                 <div class="module-card" style="--module-color: #10b981;">
                     <div class="module-icon">🌐</div>
-                    <h3>VHost Manager</h3>
-                    <p>Virtual hosts et gateway pour services SaaS locaux.</p>
+                    <h3 data-i18n="modules.vhost.name">VHost Manager</h3>
+                    <p data-i18n="modules.vhost.description">Virtual hosts et gateway pour services SaaS locaux.</p>
                     <ul class="module-features">
-                        <li>Nextcloud, GitLab, Jellyfin</li>
-                        <li>Redirection services externes</li>
-                        <li>SSL Let's Encrypt automatique</li>
-                        <li>Reverse proxy nginx</li>
+                        <li data-i18n="modules.vhost.features[0]">Nextcloud, GitLab, Jellyfin</li>
+                        <li data-i18n="modules.vhost.features[1]">Redirection services externes</li>
+                        <li data-i18n="modules.vhost.features[2]">SSL Let's Encrypt automatique</li>
+                        <li data-i18n="modules.vhost.features[3]">Reverse proxy nginx</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-vhost.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-vhost-manager" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-vhost.html" class="module-link module-link-demo" data-i18n="modules.vhost.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-vhost-manager" class="module-link module-link-github" data-i18n="modules.vhost.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- CrowdSec -->
                 <div class="module-card" style="--module-color: #6366f1;">
                     <div class="module-icon">🛡️</div>
-                    <h3>CrowdSec Dashboard</h3>
-                    <p>Protection collaborative contre les intrusions avec intelligence collective.</p>
+                    <h3 data-i18n="modules.crowdsec.name">CrowdSec Dashboard</h3>
+                    <p data-i18n="modules.crowdsec.description">Protection collaborative contre les intrusions avec intelligence collective.</p>
                     <ul class="module-features">
-                        <li>Détection d'intrusion temps réel</li>
-                        <li>Blocage automatique</li>
-                        <li>Partage communautaire</li>
-                        <li>Tableau de bord intégré</li>
+                        <li data-i18n="modules.crowdsec.features[0]">Détection d'intrusion temps réel</li>
+                        <li data-i18n="modules.crowdsec.features[1]">Blocage automatique</li>
+                        <li data-i18n="modules.crowdsec.features[2]">Partage communautaire</li>
+                        <li data-i18n="modules.crowdsec.features[3]">Tableau de bord intégré</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-crowdsec.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-crowdsec-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-crowdsec.html" class="module-link module-link-demo" data-i18n="modules.crowdsec.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-crowdsec-dashboard" class="module-link module-link-github" data-i18n="modules.crowdsec.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- WireGuard -->
                 <div class="module-card" style="--module-color: #88171a;">
                     <div class="module-icon">🔒</div>
-                    <h3>WireGuard Dashboard</h3>
-                    <p>VPN moderne avec gestion simplifiée des peers et QR codes.</p>
+                    <h3 data-i18n="modules.wireguard.name">WireGuard Dashboard</h3>
+                    <p data-i18n="modules.wireguard.description">VPN moderne avec gestion simplifiée des peers et QR codes.</p>
                     <ul class="module-features">
-                        <li>Configuration simplifiée</li>
-                        <li>QR codes pour mobile</li>
-                        <li>Statistiques par peer</li>
-                        <li>Multi-tunnels</li>
+                        <li data-i18n="modules.wireguard.features[0]">Configuration simplifiée</li>
+                        <li data-i18n="modules.wireguard.features[1]">QR codes pour mobile</li>
+                        <li data-i18n="modules.wireguard.features[2]">Statistiques par peer</li>
+                        <li data-i18n="modules.wireguard.features[3]">Multi-tunnels</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-wireguard.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-wireguard-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-wireguard.html" class="module-link module-link-demo" data-i18n="modules.wireguard.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-wireguard-dashboard" class="module-link module-link-github" data-i18n="modules.wireguard.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Netdata -->
                 <div class="module-card" style="--module-color: #00ab44;">
                     <div class="module-icon">📊</div>
-                    <h3>Netdata Dashboard</h3>
-                    <p>Monitoring système en temps réel avec alertes intelligentes.</p>
+                    <h3 data-i18n="modules.netdata.name">Netdata Dashboard</h3>
+                    <p data-i18n="modules.netdata.description">Monitoring système en temps réel avec alertes intelligentes.</p>
                     <ul class="module-features">
-                        <li>Graphiques temps réel</li>
-                        <li>CPU, RAM, Disque, Réseau</li>
-                        <li>Alertes configurables</li>
-                        <li>Historique des métriques</li>
+                        <li data-i18n="modules.netdata.features[0]">Graphiques temps réel</li>
+                        <li data-i18n="modules.netdata.features[1]">CPU, RAM, Disque, Réseau</li>
+                        <li data-i18n="modules.netdata.features[2]">Alertes configurables</li>
+                        <li data-i18n="modules.netdata.features[3]">Historique des métriques</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-netdata.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-netdata-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-netdata.html" class="module-link module-link-demo" data-i18n="modules.netdata.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-netdata-dashboard" class="module-link module-link-github" data-i18n="modules.netdata.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Netifyd -->
                 <div class="module-card" style="--module-color: #0891b2;">
                     <div class="module-icon">🔍</div>
-                    <h3>Netifyd Dashboard</h3>
-                    <p>Analyse DPI du trafic pour identifier applications et protocoles.</p>
+                    <h3 data-i18n="modules.netifyd.name">Netifyd Dashboard</h3>
+                    <p data-i18n="modules.netifyd.description">Analyse DPI du trafic pour identifier applications et protocoles.</p>
                     <ul class="module-features">
-                        <li>Deep Packet Inspection</li>
-                        <li>Identification applications</li>
-                        <li>Classification trafic</li>
-                        <li>Statistiques détaillées</li>
+                        <li data-i18n="modules.netifyd.features[0]">Deep Packet Inspection</li>
+                        <li data-i18n="modules.netifyd.features[1]">Identification applications</li>
+                        <li data-i18n="modules.netifyd.features[2]">Catégorisation protocoles</li>
+                        <li data-i18n="modules.netifyd.features[3]">Statistiques détaillées</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-netifyd.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-netifyd-dashboard" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-netifyd.html" class="module-link module-link-demo" data-i18n="modules.netifyd.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-netifyd-dashboard" class="module-link module-link-github" data-i18n="modules.netifyd.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Client Guardian -->
                 <div class="module-card" style="--module-color: #f97316;">
                     <div class="module-icon">👥</div>
-                    <h3>Client Guardian</h3>
-                    <p>Contrôle d'accès et gestion des clients réseau.</p>
+                    <h3 data-i18n="modules.clientGuardian.name">Client Guardian</h3>
+                    <p data-i18n="modules.clientGuardian.description">Contrôle d'accès et gestion des clients réseau.</p>
                     <ul class="module-features">
-                        <li>Liste des clients connectés</li>
-                        <li>Blocage/limitation par MAC</li>
-                        <li>Groupes et règles horaires</li>
-                        <li>Contrôle parental</li>
+                        <li data-i18n="modules.clientGuardian.features[0]">Liste blanche/noire</li>
+                        <li data-i18n="modules.clientGuardian.features[1]">Restrictions horaires</li>
+                        <li data-i18n="modules.clientGuardian.features[2]">Limitations bande passante</li>
+                        <li data-i18n="modules.clientGuardian.features[3]">Monitoring temps réel</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-client-guardian.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-client-guardian" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-client-guardian.html" class="module-link module-link-demo" data-i18n="modules.clientGuardian.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-client-guardian" class="module-link module-link-github" data-i18n="modules.clientGuardian.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Network Modes -->
                 <div class="module-card" style="--module-color: #8b5cf6;">
                     <div class="module-icon">🌐</div>
-                    <h3>Network Modes</h3>
-                    <p>Configuration réseau simplifiée : NAT, Bridge, AP...</p>
+                    <h3 data-i18n="modules.networkModes.name">Network Modes</h3>
+                    <p data-i18n="modules.networkModes.description">Configuration réseau simplifiée : NAT, Bridge, AP...</p>
                     <ul class="module-features">
-                        <li>Routeur NAT / Bridge</li>
-                        <li>Point d'accès WiFi</li>
-                        <li>VPN Gateway</li>
-                        <li>Multi-WAN / Failover</li>
+                        <li data-i18n="modules.networkModes.features[0]">Modes préconfigurés</li>
+                        <li data-i18n="modules.networkModes.features[1]">Basculement facile</li>
+                        <li data-i18n="modules.networkModes.features[2]">Templates réseau</li>
+                        <li data-i18n="modules.networkModes.features[3]">Multi-WAN</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-network-modes.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-network-modes" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-network-modes.html" class="module-link module-link-demo" data-i18n="modules.networkModes.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-network-modes" class="module-link module-link-github" data-i18n="modules.networkModes.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- Traffic Shaper -->
                 <div class="module-card" style="--module-color: #14b8a6;">
                     <div class="module-icon">🚦</div>
-                    <h3>Traffic Shaper</h3>
-                    <p>Contrôle avancé du trafic avec CAKE et anti-bufferbloat.</p>
+                    <h3 data-i18n="modules.trafficShaper.name">Traffic Shaper</h3>
+                    <p data-i18n="modules.trafficShaper.description">Contrôle avancé du trafic avec CAKE et anti-bufferbloat.</p>
                     <ul class="module-features">
-                        <li>CAKE / fq_codel / SQM</li>
-                        <li>Priorités DSCP</li>
-                        <li>Anti-bufferbloat</li>
-                        <li>Latence optimisée</li>
+                        <li data-i18n="modules.trafficShaper.features[0]">CAKE QoS</li>
+                        <li data-i18n="modules.trafficShaper.features[1]">Anti-bufferbloat</li>
+                        <li data-i18n="modules.trafficShaper.features[2]">Gestion congestion</li>
+                        <li data-i18n="modules.trafficShaper.features[3]">Priorisation intelligente</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-traffic-shaper.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-traffic-shaper" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-traffic-shaper.html" class="module-link module-link-demo" data-i18n="modules.trafficShaper.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-traffic-shaper" class="module-link module-link-github" data-i18n="modules.trafficShaper.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- CDN Cache -->
                 <div class="module-card" style="--module-color: #ec4899;">
                     <div class="module-icon">💾</div>
-                    <h3>CDN Cache</h3>
-                    <p>Cache local pour économiser la bande passante.</p>
+                    <h3 data-i18n="modules.cdnCache.name">CDN Cache</h3>
+                    <p data-i18n="modules.cdnCache.description">Cache local pour économiser la bande passante.</p>
                     <ul class="module-features">
-                        <li>Cache Netflix, YouTube, Spotify</li>
-                        <li>Updates OS (Apple, Microsoft)</li>
-                        <li>Économies de bande passante</li>
-                        <li>Statistiques hit/miss</li>
+                        <li data-i18n="modules.cdnCache.features[0]">Cache Steam, Windows Update</li>
+                        <li data-i18n="modules.cdnCache.features[1]">Économie bande passante</li>
+                        <li data-i18n="modules.cdnCache.features[2]">Transparent proxy</li>
+                        <li data-i18n="modules.cdnCache.features[3]">Statistiques cache</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-cdn-cache.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-cdn-cache" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-cdn-cache.html" class="module-link module-link-demo" data-i18n="modules.cdnCache.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-cdn-cache" class="module-link module-link-github" data-i18n="modules.cdnCache.github">GitHub</a>
                     </div>
                 </div>
                 
                 <!-- SecuBox Hub -->
                 <div class="module-card" style="--module-color: #6366f1;">
                     <div class="module-icon">🛡️</div>
-                    <h3>SecuBox Hub</h3>
-                    <p>Centre de contrôle unifié pour tous les modules.</p>
+                    <h3 data-i18n="modules.secuboxHub.name">SecuBox Hub</h3>
+                    <p data-i18n="modules.secuboxHub.description">Centre de contrôle unifié pour tous les modules.</p>
                     <ul class="module-features">
-                        <li>Vue d'ensemble système</li>
-                        <li>État de tous les modules</li>
-                        <li>Activité et alertes</li>
-                        <li>Actions rapides</li>
+                        <li data-i18n="modules.secuboxHub.features[0]">Dashboard centralisé</li>
+                        <li data-i18n="modules.secuboxHub.features[1]">Gestion modules</li>
+                        <li data-i18n="modules.secuboxHub.features[2]">Notifications globales</li>
+                        <li data-i18n="modules.secuboxHub.features[3]">Vue d'ensemble</li>
                     </ul>
                     <div class="module-links">
-                        <a href="demo-secubox-hub.html" class="module-link module-link-demo">Démo</a>
-                        <a href="https://github.com/cybermood-eu/luci-app-secubox" class="module-link module-link-github">GitHub</a>
+                        <a href="demo-secubox-hub.html" class="module-link module-link-demo" data-i18n="modules.secuboxHub.demo">Démo</a>
+                        <a href="https://github.com/cybermood-eu/luci-app-secubox" class="module-link module-link-github" data-i18n="modules.secuboxHub.github">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -1098,41 +1098,41 @@
     <section id="features" class="features-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">✨ Fonctionnalités</span>
-                <h2>Pourquoi choisir SecuBox ?</h2>
-                <p>Une solution complète, open source et conçue pour OpenWrt.</p>
+                <span class="section-tag" data-i18n="features.tag">✨ Fonctionnalités</span>
+                <h2 data-i18n="features.title">Pourquoi choisir SecuBox ?</h2>
+                <p data-i18n="features.subtitle">Une solution complète, open source et conçue pour OpenWrt.</p>
             </div>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
-                    <h3>Installation simple</h3>
-                    <p>Un simple `opkg install` et c'est prêt. Pas de configuration complexe.</p>
+                    <h3 data-i18n="features.simple.title">Installation simple</h3>
+                    <p data-i18n="features.simple.description">Un simple `opkg install` et c'est prêt. Pas de configuration complexe.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
-                    <h3>Intégration LuCI native</h3>
-                    <p>Interface intégrée à LuCI avec le même look & feel que votre routeur.</p>
+                    <h3 data-i18n="features.luci.title">Intégration LuCI native</h3>
+                    <p data-i18n="features.luci.description">Interface intégrée à LuCI avec le même look & feel que votre routeur.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Temps réel</h3>
-                    <p>Monitoring et statistiques en temps réel via RPCD et ubus.</p>
+                    <h3 data-i18n="features.realtime.title">Temps réel</h3>
+                    <p data-i18n="features.realtime.description">Monitoring et statistiques en temps réel via RPCD et ubus.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <h3>Sécurité renforcée</h3>
-                    <p>CrowdSec, WireGuard, authentification OAuth et portail captif.</p>
+                    <h3 data-i18n="features.security.title">Sécurité renforcée</h3>
+                    <p data-i18n="features.security.description">CrowdSec, WireGuard, authentification OAuth et portail captif.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>Performance</h3>
-                    <p>QoS avancé avec CAKE, détection médias et priorités automatiques.</p>
+                    <h3 data-i18n="features.performance.title">Performance</h3>
+                    <p data-i18n="features.performance.description">QoS avancé avec CAKE, détection médias et priorités automatiques.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌍</div>
-                    <h3>Multi-architecture</h3>
-                    <p>x86_64, ARM64, ARM32. Fonctionne sur tous les routeurs OpenWrt.</p>
+                    <h3 data-i18n="features.multiarch.title">Multi-architecture</h3>
+                    <p data-i18n="features.multiarch.description">x86_64, ARM64, ARM32. Fonctionne sur tous les routeurs OpenWrt.</p>
                 </div>
             </div>
         </div>
@@ -1142,9 +1142,9 @@
     <section id="demo" class="demo-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">🎮 Démonstration</span>
-                <h2>Découvrez SecuBox en action</h2>
-                <p>Interface interactive sans installation.</p>
+                <span class="section-tag" data-i18n="demo.tag">🎮 Démonstration</span>
+                <h2 data-i18n="demo.title">Découvrez SecuBox en action</h2>
+                <p data-i18n="demo.subtitle">Interface interactive sans installation.</p>
             </div>
             
             <div class="demo-container">
@@ -1374,26 +1374,26 @@
     <section id="installation" class="install-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">📥 Installation</span>
-                <h2>Prêt en 3 étapes</h2>
-                <p>Installation simple via opkg, le gestionnaire de paquets OpenWrt.</p>
+                <span class="section-tag" data-i18n="installation.tag">📥 Installation</span>
+                <h2 data-i18n="installation.title">Prêt en 3 étapes</h2>
+                <p data-i18n="installation.subtitle">Installation simple via opkg, le gestionnaire de paquets OpenWrt.</p>
             </div>
-            
+
             <div class="install-steps">
                 <div class="install-step">
                     <div class="step-number">1</div>
-                    <h3>Ajouter le dépôt</h3>
-                    <p>Ajoutez le dépôt CyberMind à votre configuration opkg.</p>
+                    <h3 data-i18n="installation.step1.title">Ajouter le dépôt</h3>
+                    <p data-i18n="installation.step1.description">Ajoutez le dépôt CyberMind à votre configuration opkg.</p>
                 </div>
                 <div class="install-step">
                     <div class="step-number">2</div>
-                    <h3>Mettre à jour</h3>
-                    <p>Rafraîchissez la liste des paquets disponibles.</p>
+                    <h3 data-i18n="installation.step2.title">Mettre à jour</h3>
+                    <p data-i18n="installation.step2.description">Rafraîchissez la liste des paquets disponibles.</p>
                 </div>
                 <div class="install-step">
                     <div class="step-number">3</div>
-                    <h3>Installer</h3>
-                    <p>Installez SecuBox et les modules souhaités.</p>
+                    <h3 data-i18n="installation.step3.title">Installer</h3>
+                    <p data-i18n="installation.step3.description">Installez SecuBox et les modules souhaités.</p>
                 </div>
             </div>
             
@@ -1425,34 +1425,34 @@
     <section id="blog">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">📝 Blog</span>
-                <h2>Articles & Tutoriels</h2>
-                <p>Guides détaillés pour tirer le meilleur de SecuBox.</p>
+                <span class="section-tag" data-i18n="blog.tag">📝 Blog</span>
+                <h2 data-i18n="blog.title">Articles & Tutoriels</h2>
+                <p data-i18n="blog.subtitle">Guides détaillés pour tirer le meilleur de SecuBox.</p>
             </div>
-            
+
             <div class="blog-grid">
                 <a href="blog/bandwidth-manager-guide.html" class="blog-card">
                     <div class="blog-image" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">⚡</div>
                     <div class="blog-content">
-                        <span class="blog-tag">Tutorial</span>
-                        <h3>Optimiser sa bande passante avec Bandwidth Manager</h3>
-                        <p>Guide complet pour configurer QoS, quotas et détection automatique des médias.</p>
+                        <span class="blog-tag" data-i18n="blog.article1.tag">Tutorial</span>
+                        <h3 data-i18n="blog.article1.title">Optimiser sa bande passante avec Bandwidth Manager</h3>
+                        <p data-i18n="blog.article1.description">Guide complet pour configurer QoS, quotas et détection automatique des médias.</p>
                     </div>
                 </a>
                 <a href="blog/auth-guardian-setup.html" class="blog-card">
                     <div class="blog-image" style="background: linear-gradient(135deg, #0891b2, #06b6d4);">🔐</div>
                     <div class="blog-content">
-                        <span class="blog-tag">Tutorial</span>
-                        <h3>Portail captif avec OAuth et vouchers</h3>
-                        <p>Configurez un système d'authentification complet pour votre réseau WiFi.</p>
+                        <span class="blog-tag" data-i18n="blog.article2.tag">Tutorial</span>
+                        <h3 data-i18n="blog.article2.title">Portail captif avec OAuth et vouchers</h3>
+                        <p data-i18n="blog.article2.description">Configurez un système d'authentification complet pour votre réseau WiFi.</p>
                     </div>
                 </a>
                 <a href="blog/local-saas-vhost.html" class="blog-card">
                     <div class="blog-image" style="background: linear-gradient(135deg, #059669, #10b981);">🌐</div>
                     <div class="blog-content">
-                        <span class="blog-tag">Tutorial</span>
-                        <h3>Héberger vos propres services SaaS</h3>
-                        <p>Nextcloud, GitLab, Jellyfin : remplacez les services cloud par des alternatives locales.</p>
+                        <span class="blog-tag" data-i18n="blog.article3.tag">Tutorial</span>
+                        <h3 data-i18n="blog.article3.title">Héberger vos propres services SaaS</h3>
+                        <p data-i18n="blog.article3.description">Nextcloud, GitLab, Jellyfin : remplacez les services cloud par des alternatives locales.</p>
                     </div>
                 </a>
             </div>
@@ -1462,11 +1462,11 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Prêt à sécuriser votre réseau ?</h2>
-            <p>Rejoignez les utilisateurs qui font confiance à SecuBox pour protéger leur infrastructure.</p>
+            <h2 data-i18n="cta.title">Prêt à sécuriser votre réseau ?</h2>
+            <p data-i18n="cta.subtitle">Rejoignez les utilisateurs qui font confiance à SecuBox pour protéger leur infrastructure.</p>
             <div class="cta-buttons">
-                <a href="#installation" class="btn">📥 Installer maintenant</a>
-                <a href="https://github.com/cybermood-eu/secubox" class="btn btn-outline">⭐ Star sur GitHub</a>
+                <a href="#installation" class="btn" data-i18n="cta.btnInstall">📥 Installer maintenant</a>
+                <a href="https://github.com/cybermood-eu/secubox" class="btn btn-outline" data-i18n="cta.btnGithub">⭐ Star sur GitHub</a>
             </div>
         </div>
     </section>
@@ -1479,24 +1479,24 @@
                     <span class="logo-icon">🛡️</span>
                     <span>SecuBox</span>
                 </a>
-                <p>Suite de sécurité et gestion réseau pour OpenWrt. Développé par CyberMind.</p>
+                <p data-i18n="footer.description">Suite de sécurité et gestion réseau pour OpenWrt. Développé par CyberMind.</p>
             </div>
             <div class="footer-links">
-                <h4>Produit</h4>
+                <h4 data-i18n="footer.product">Produit</h4>
                 <ul>
-                    <li><a href="#modules">Modules</a></li>
-                    <li><a href="#features">Fonctionnalités</a></li>
-                    <li><a href="#demo">Démo</a></li>
-                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#modules" data-i18n="nav.modules">Modules</a></li>
+                    <li><a href="#features" data-i18n="nav.features">Fonctionnalités</a></li>
+                    <li><a href="#demo" data-i18n="nav.demo">Démo</a></li>
+                    <li><a href="#installation" data-i18n="nav.installation">Installation</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Ressources</h4>
+                <h4 data-i18n="footer.resources">Ressources</h4>
                 <ul>
-                    <li><a href="https://docs.cybermind.fr/secubox">Documentation</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="https://github.com/cybermood-eu/secubox/issues">Support</a></li>
-                    <li><a href="https://github.com/cybermood-eu/secubox/releases">Releases</a></li>
+                    <li><a href="https://docs.cybermind.fr/secubox" data-i18n="footer.documentation">Documentation</a></li>
+                    <li><a href="#blog" data-i18n="nav.blog">Blog</a></li>
+                    <li><a href="https://github.com/cybermood-eu/secubox/issues" data-i18n="footer.support">Support</a></li>
+                    <li><a href="https://github.com/cybermood-eu/secubox/releases" data-i18n="footer.releases">Releases</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -1511,8 +1511,8 @@
         </div>
         <div class="footer-bottom">
             <div>
-                <a href="https://cybermood.eu" style="color: var(--primary); text-decoration: none;">CyberMood.eu</a> 
-                © 2025 <a href="https://cybermind.fr" style="color: var(--text-muted); text-decoration: none;">CyberMind.fr</a> 
+                <a href="https://cybermood.eu" style="color: var(--primary); text-decoration: none;">CyberMood.eu</a>
+                © 2025 <a href="https://cybermind.fr" style="color: var(--text-muted); text-decoration: none;">CyberMind.fr</a>
                 — Open Source Apache-2.0 — 🇫🇷 Made in France with ❤️
             </div>
             <div class="social-links">
@@ -1561,5 +1561,8 @@
             }
         });
     </script>
+
+    <!-- Multi-language System -->
+    <script src="/i18n.js"></script>
 </body>
 </html>

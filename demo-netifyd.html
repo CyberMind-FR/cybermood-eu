@@ -65,7 +65,7 @@
 </head>
 <body>
     <div class="header">
-        <a href="index.html" class="back-link">← Retour</a>
+        <a href="index.html" class="back-link" data-i18n="demo.backToMain">← Retour à l'accueil</a>
         <h1>🔍 Netifyd Dashboard</h1>
         <p>Deep Packet Inspection & Application Detection</p>
     </div>
@@ -297,5 +297,8 @@
             document.getElementById('st-bw').textContent = (30 + Math.random() * 30).toFixed(1) + ' MB/s';
         }, 2000);
     </script>
+
+    <!-- Multi-language System -->
+    <script src="/i18n.js"></script>
 </body>
 </html>

@@ -217,13 +217,13 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
   <div class="container nav-content">
     <a href="https://secubox.cybermood.eu" class="nav-logo">SecuBox</a>
     <div class="nav-links">
-      <a href="#rewards">Contreparties</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#why">Pourquoi</a>
-      <a href="#team">Équipe</a>
-      <a href="#faq">FAQ</a>
+      <a href="#rewards" data-i18n="campaign.nav.rewards">Contreparties</a>
+      <a href="#roadmap" data-i18n="campaign.nav.roadmap">Roadmap</a>
+      <a href="#why" data-i18n="campaign.nav.why">Pourquoi</a>
+      <a href="#team" data-i18n="campaign.nav.team">Équipe</a>
+      <a href="#faq" data-i18n="campaign.nav.faq">FAQ</a>
     </div>
-    <a href="#newsletter" class="nav-cta">🚀 S'inscrire</a>
+    <a href="#newsletter" class="nav-cta" data-i18n="campaign.nav.signup">🚀 S'inscrire</a>
   </div>
 </nav>
 
@@ -234,32 +234,32 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
       <div>
         <div class="hero-badge">
           <span class="hero-badge-pulse"></span>
-          Campagne Participative — Lancement prévu Q2 2026
+          <span data-i18n="campaign.hero.badge">Campagne Participative — Lancement prévu Q2 2026</span>
         </div>
-        <h1 class="hero-title">Soutenez <span>SecuBox</span></h1>
-        <p class="hero-subtitle">
-          L'appliance de cybersécurité <strong>100% open source</strong> et <strong>Made in France</strong>. 
+        <h1 class="hero-title"><span data-i18n="campaign.hero.title">Soutenez</span> <span data-i18n="campaign.hero.titleHighlight">SecuBox</span></h1>
+        <p class="hero-subtitle" data-i18n="campaign.hero.subtitle">
+          L'appliance de cybersécurité <strong>100% open source</strong> et <strong>Made in France</strong>.
           Protégez votre réseau avec une solution professionnelle accessible à tous.
         </p>
         
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-value">15</div>
-            <div class="hero-stat-label">Modules LuCI</div>
+            <div class="hero-stat-value" data-i18n="campaign.hero.stat1Value">15</div>
+            <div class="hero-stat-label" data-i18n="campaign.hero.stat1Label">Modules LuCI</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-value">13</div>
             <div class="hero-stat-label">Architectures</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-value">100%</div>
-            <div class="hero-stat-label">Open Source</div>
+            <div class="hero-stat-value" data-i18n="campaign.hero.stat2Value">100%</div>
+            <div class="hero-stat-label" data-i18n="campaign.hero.stat2Label">Open Source</div>
           </div>
         </div>
-        
+
         <div class="hero-cta">
-          <a href="#rewards" class="btn btn-primary">🎁 Voir les Contreparties</a>
-          <a href="https://secubox.cybermood.eu" class="btn btn-secondary">📖 Découvrir le Projet</a>
+          <a href="#rewards" class="btn btn-primary" data-i18n="campaign.hero.btnRewards">🎁 Voir les Contreparties</a>
+          <a href="https://secubox.cybermood.eu" class="btn btn-secondary" data-i18n="campaign.hero.btnLearnMore">📖 Découvrir le Projet</a>
         </div>
       </div>
       
@@ -293,9 +293,9 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
 <section class="section section-alt" id="rewards">
   <div class="container">
     <div class="section-header">
-      <span class="section-badge">🎁 Contreparties</span>
-      <h2 class="section-title">Choisissez votre Pack</h2>
-      <p class="section-desc">Du simple soutien jusqu'à la SecuBox complète avec hardware GlobalScale et support premium.</p>
+      <span class="section-badge" data-i18n="campaign.rewards.badge">🎁 Contreparties</span>
+      <h2 class="section-title" data-i18n="campaign.rewards.title">Choisissez votre Pack</h2>
+      <p class="section-desc" data-i18n="campaign.rewards.description">Du simple soutien jusqu'à la SecuBox complète avec hardware GlobalScale et support premium.</p>
     </div>
     
     <div class="rewards-grid">
@@ -823,6 +823,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
+
+<!-- Multi-language System -->
+<script>
+// Load campaign translations
+if (window.I18N) {
+  // Override loadTranslations to load campaign-specific translations
+  const originalLoadTranslations = I18N.loadTranslations.bind(I18N);
+  I18N.loadTranslations = async function(lang) {
+    try {
+      const response = await fetch(`/i18n/campaign.json`);
+      if (!response.ok) throw new Error(`Failed to load campaign.json`);
+      const allTranslations = await response.json();
+      this.translations = { campaign: allTranslations[lang] || allTranslations['fr'] };
+    } catch (error) {
+      console.error(`Error loading campaign translations:`, error);
+    }
+  };
+}
+</script>
+<script src="/i18n.js"></script>
 
 </body>
 </html>

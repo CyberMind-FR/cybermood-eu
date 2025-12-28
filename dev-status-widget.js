@@ -101,7 +101,7 @@ const DevStatusWidget = {
 
     // Overall project statistics
     stats: {
-        modulesCount: 15,
+        get modulesCount() { return DevStatusWidget.moduleStatus.length; },
         languagesSupported: 11,
         architectures: 13,
         linesOfCode: 15000,
@@ -161,9 +161,15 @@ const DevStatusWidget = {
      * Calculate overall progress
      */
     getOverallProgress() {
-        const milestones = Object.values(this.milestones);
-        const totalProgress = milestones.reduce((sum, m) => sum + m.progress, 0);
-        return Math.round(totalProgress / milestones.length);
+        return Math.round(this.getModulesOverallProgress());
+    },
+
+    getModulesOverallProgress() {
+        const modules = this.moduleStatus || [];
+        if (!modules.length)
+            return this.getMilestoneProgressValue(this.milestones['modules-core']) * 100;
+        const total = modules.reduce((sum, module) => sum + this.getVersionProgress(module), 0);
+        return (total / modules.length) * 100;
     },
 
     /**
@@ -183,7 +189,7 @@ const DevStatusWidget = {
             return;
         }
 
-        const overallProgress = this.getOverallProgress();
+        const overallProgress = this.getModulesOverallProgress();
         const currentPhase = this.getCurrentPhase();
 
         container.innerHTML = `
@@ -204,6 +210,7 @@ const DevStatusWidget = {
      * Render header section
      */
     renderHeader(progress, phase) {
+        const displayProgress = Number(progress || 0).toFixed(2);
         return `
             <div class="dsw-header">
                 <div class="dsw-header-content">
@@ -217,7 +224,7 @@ const DevStatusWidget = {
                             <circle class="dsw-progress-bar" cx="60" cy="60" r="54"
                                     style="stroke-dashoffset: ${339 - (339 * progress / 100)}" />
                         </svg>
-                        <div class="dsw-progress-value">${progress}%</div>
+                        <div class="dsw-progress-value">${displayProgress}%</div>
                     </div>
                     <div class="dsw-current-phase">
                         <div class="dsw-phase-label">Current Phase</div>
@@ -236,13 +243,14 @@ const DevStatusWidget = {
         const milestonesHtml = Object.entries(this.milestones).map(([key, milestone]) => {
             const itemsHtml = milestone.items.map(item => {
                 const moduleInfo = this.getModuleInfo(item.name);
-                const progressPercent = moduleInfo ? Math.round(this.getVersionProgress(moduleInfo) * 100) : null;
-                const progressLabel = moduleInfo ? this.formatVersionProgress(moduleInfo) : '';
+                const progressValue = this.getItemProgress(item);
+                const progressPercent = Math.round(progressValue * 100);
+                const progressLabel = moduleInfo ? this.formatVersionProgress(moduleInfo) : (item.status === 'completed' ? '1.00 / 1.00' : (item.status === 'in-progress' ? '0.50 / 1.00' : '0.00 / 1.00'));
                 return `
                     <div class="dsw-item dsw-item-${item.status}">
                         <span class="dsw-item-icon">${this.getStatusIcon(item.status)}</span>
                         <span class="dsw-item-name">${item.name}</span>
-                        ${moduleInfo ? `
+                        ${progressValue >= 0 ? `
                             <div class="dsw-item-progress">
                                 <div class="dsw-item-progress-bar">
                                     <div class="dsw-item-progress-fill" data-progress="${progressPercent}"></div>
@@ -274,7 +282,7 @@ const DevStatusWidget = {
                     <div class="dsw-milestone-mini-label">${this.getMilestoneProgressFraction(milestone)}</div>
                 </div>
                 <div class="dsw-progress-bar-container">
-                    <div class="dsw-progress-bar-fill" data-progress="${milestone.progress}"
+                    <div class="dsw-progress-bar-fill" data-progress="${Math.round(this.getMilestoneProgressValue(milestone) * 100)}"
                          style="background: ${milestone.color}"></div>
                 </div>
                 <div class="dsw-milestone-items">
@@ -334,7 +342,8 @@ const DevStatusWidget = {
      * Render per-module status grid
      */
     renderModuleStatus() {
-        const modulesHtml = this.moduleStatus.map(module => {
+        const modulesWithProgress = [...this.moduleStatus].sort((a, b) => this.getVersionProgress(b) - this.getVersionProgress(a));
+        const modulesHtml = modulesWithProgress.map(module => {
             const status = this.getModuleStatus(module);
             const progressPercent = Math.round(this.getVersionProgress(module) * 100);
             const statusLabel = status === 'completed'
@@ -433,31 +442,29 @@ const DevStatusWidget = {
      * Get milestone completion text (completed/total)
      */
     getMilestoneCompletion(milestone) {
-        return `${milestone.completed || 0}/${milestone.total || milestone.items.length || 0}`;
+        const total = milestone.items.length || milestone.total || 0;
+        if (!total)
+            return '0/0';
+        const completed = milestone.items.filter(item => this.getItemProgress(item) >= 0.999).length;
+        return `${completed}/${total}`;
     },
 
     /**
      * Calculate milestone progress percentage from items
      */
     getMilestonePercentage(milestone) {
-        if (milestone.progress)
-            return milestone.progress;
-        const items = milestone.items || [];
-        if (!items.length)
-            return 0;
-        const completed = items.filter(item => item.status === 'completed').length;
-        return Math.round((completed / items.length) * 100);
+        return Math.round(this.getMilestoneProgressValue(milestone) * 100);
     },
 
     /**
      * Get milestone progress value (0-1)
      */
     getMilestoneProgressValue(milestone) {
-        const total = milestone.total || milestone.items.length || 0;
-        if (!total)
+        const items = milestone.items || [];
+        if (!items.length)
             return 0;
-        const completed = milestone.completed || milestone.items.filter(item => item.status === 'completed').length;
-        return Math.min(1, completed / total);
+        const sum = items.reduce((acc, item) => acc + this.getItemProgress(item), 0);
+        return Math.min(1, sum / items.length);
     },
 
     /**
@@ -465,7 +472,7 @@ const DevStatusWidget = {
      */
     getMilestoneProgressFraction(milestone) {
         const fraction = this.getMilestoneProgressValue(milestone);
-        return `${fraction.toFixed(1)} / 1`;
+        return `${fraction.toFixed(2)} / 1`;
     },
 
     /**
@@ -520,6 +527,15 @@ const DevStatusWidget = {
 
     getModuleInfo(name) {
         return this.moduleStatus.find(module => module.name === name);
+    },
+
+    getItemProgress(item) {
+        const module = this.getModuleInfo(item.name);
+        if (module)
+            return this.getVersionProgress(module);
+        if (item.status === 'completed') return 1;
+        if (item.status === 'in-progress') return 0.5;
+        return 0;
     },
 
     /**

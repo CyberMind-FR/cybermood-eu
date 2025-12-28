@@ -211,7 +211,7 @@ python3 -m http.server 8000
 - **Site web**: https://secubox.cybermood.eu
 - **Campagne**: https://secubox.cybermood.eu/campaign.html
 - **Demo**: https://secubox.cybermood.eu/demo-dev-status.html
-- **GitHub**: https://github.com/cybermood-eu/secubox
+- **GitHub**: https://github.com/CyberMind-FR/secubox-openwrt
 
 ## 📄 Licence
 

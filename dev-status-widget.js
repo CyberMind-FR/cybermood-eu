@@ -8,44 +8,47 @@ const DevStatusWidget = {
     milestones: {
         'modules-core': {
             name: 'Core Modules',
-            progress: 100,
-            total: 13,
-            completed: 13,
+            progress: 94,
+            total: 15,
+            completed: 14,
             icon: '📦',
             color: '#10b981',
             items: [
-                { name: 'Bandwidth Manager', status: 'completed' },
-                { name: 'Auth Guardian', status: 'completed' },
-                { name: 'Media Flow', status: 'completed' },
-                { name: 'VHost Manager', status: 'completed' },
+                { name: 'SecuBox Central Hub', status: 'completed' },
+                { name: 'System Hub', status: 'completed' },
+                { name: 'Traffic Shaper', status: 'completed' },
                 { name: 'CrowdSec Dashboard', status: 'completed' },
-                { name: 'WireGuard Dashboard', status: 'completed' },
                 { name: 'Netdata Dashboard', status: 'completed' },
                 { name: 'Netifyd Dashboard', status: 'completed' },
-                { name: 'Client Guardian', status: 'completed' },
                 { name: 'Network Modes', status: 'completed' },
-                { name: 'Traffic Shaper', status: 'completed' },
+                { name: 'WireGuard Dashboard', status: 'completed' },
+                { name: 'Auth Guardian', status: 'completed' },
+                { name: 'Client Guardian (Captive Portal Fix)', status: 'in-progress' },
+                { name: 'Bandwidth Manager', status: 'completed' },
+                { name: 'Media Flow', status: 'completed' },
                 { name: 'CDN Cache', status: 'completed' },
-                { name: 'SecuBox Hub', status: 'completed' }
+                { name: 'VHost Manager', status: 'completed' },
+                { name: 'KSM Manager', status: 'completed' }
             ]
         },
         'hardware-support': {
             name: 'Hardware Support',
-            progress: 95,
-            total: 4,
-            completed: 3,
+            progress: 88,
+            total: 5,
+            completed: 4,
             icon: '🔧',
             color: '#f59e0b',
             items: [
-                { name: 'ESPRESSObin Ultra', status: 'completed' },
-                { name: 'Sheeva64 (WiFi 6)', status: 'completed' },
-                { name: 'MOCHAbin (10GbE)', status: 'completed' },
-                { name: 'Performance Optimization', status: 'in-progress' }
+                { name: 'x86-64 Tier 1 (PC / VM)', status: 'completed' },
+                { name: 'ARM Cortex-A72 Tier 1 (MOCHAbin / RPi4)', status: 'completed' },
+                { name: 'ARM Cortex-A53 Tier 1 (ESPRESSObin / Sheeva64)', status: 'completed' },
+                { name: 'Tier 2 ARM64 / ARM32 Targets', status: 'in-progress' },
+                { name: 'Tier 2 MIPS Targets', status: 'in-progress' }
             ]
         },
         'integration': {
             name: 'Integration & Testing',
-            progress: 85,
+            progress: 88,
             total: 6,
             completed: 5,
             icon: '🧪',
@@ -56,12 +59,12 @@ const DevStatusWidget = {
                 { name: 'ubus APIs', status: 'completed' },
                 { name: 'Multi-platform Build', status: 'completed' },
                 { name: 'Documentation', status: 'completed' },
-                { name: 'Beta Testing Program', status: 'in-progress' }
+                { name: 'Hardware Beta Testing', status: 'in-progress' }
             ]
         },
         'campaign-prep': {
             name: 'Campaign Preparation',
-            progress: 70,
+            progress: 75,
             total: 5,
             completed: 3,
             icon: '🚀',
@@ -78,13 +81,13 @@ const DevStatusWidget = {
 
     // Overall project statistics
     stats: {
-        modulesCount: 13,
+        modulesCount: 15,
         languagesSupported: 11,
-        architectures: 4,
+        architectures: 13,
         linesOfCode: 15000,
         contributors: 3,
         commits: 450,
-        openIssues: 12,
+        openIssues: 1,
         closedIssues: 87
     },
 
@@ -108,15 +111,15 @@ const DevStatusWidget = {
             phase: 'Phase 3',
             name: 'Hardware Integration',
             period: 'Q2 - Q4 2025',
-            status: 'in-progress',
-            progress: 95
+            status: 'completed',
+            progress: 100
         },
         {
             phase: 'Phase 4',
             name: 'Beta Testing',
             period: 'Q1 2026',
             status: 'in-progress',
-            progress: 40
+            progress: 55
         },
         {
             phase: 'Phase 5',

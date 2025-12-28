@@ -328,6 +328,47 @@
             color: var(--success);
             font-weight: bold;
         }
+
+        .module-progress {
+            margin-bottom: 20px;
+        }
+
+        .module-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(148, 163, 184, 0.2);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .module-progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--module-color, var(--primary)), var(--secondary));
+            border-radius: 999px;
+            transition: width 0.8s ease-out;
+        }
+
+        .module-progress-label {
+            margin-top: 6px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .module-demo-sticker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
         
         .module-links {
             display: flex;
@@ -881,6 +922,13 @@
                         <li data-i18n="modules.bandwidth.features[2]">Throttling automatique</li>
                         <li data-i18n="modules.bandwidth.features[3]">Détection VoIP, Gaming, Streaming</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-bandwidth.html</div>
                     <div class="module-links">
                         <a href="demo-bandwidth.html" class="module-link module-link-demo" data-i18n="modules.bandwidth.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-bandwidth-manager" class="module-link module-link-github" data-i18n="modules.bandwidth.github">GitHub</a>
@@ -898,6 +946,13 @@
                         <li data-i18n="modules.auth.features[2]">Système de vouchers</li>
                         <li data-i18n="modules.auth.features[3]">Gestion des sessions/cookies</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-auth.html</div>
                     <div class="module-links">
                         <a href="demo-auth.html" class="module-link module-link-demo" data-i18n="modules.auth.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-auth-guardian" class="module-link module-link-github" data-i18n="modules.auth.github">GitHub</a>
@@ -915,6 +970,13 @@
                         <li data-i18n="modules.media.features[2]">Monitoring VoIP (Zoom, Teams)</li>
                         <li data-i18n="modules.media.features[3]">Qualité de flux (SD/HD/4K)</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-media.html</div>
                     <div class="module-links">
                         <a href="demo-media.html" class="module-link module-link-demo" data-i18n="modules.media.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-media-flow" class="module-link module-link-github" data-i18n="modules.media.github">GitHub</a>
@@ -932,6 +994,13 @@
                         <li data-i18n="modules.vhost.features[2]">SSL Let's Encrypt automatique</li>
                         <li data-i18n="modules.vhost.features[3]">Reverse proxy nginx</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-vhost.html</div>
                     <div class="module-links">
                         <a href="demo-vhost.html" class="module-link module-link-demo" data-i18n="modules.vhost.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-vhost-manager" class="module-link module-link-github" data-i18n="modules.vhost.github">GitHub</a>
@@ -949,6 +1018,13 @@
                         <li data-i18n="modules.crowdsec.features[2]">Partage communautaire</li>
                         <li data-i18n="modules.crowdsec.features[3]">Tableau de bord intégré</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-crowdsec.html</div>
                     <div class="module-links">
                         <a href="demo-crowdsec.html" class="module-link module-link-demo" data-i18n="modules.crowdsec.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-crowdsec-dashboard" class="module-link module-link-github" data-i18n="modules.crowdsec.github">GitHub</a>
@@ -966,6 +1042,13 @@
                         <li data-i18n="modules.wireguard.features[2]">Statistiques par peer</li>
                         <li data-i18n="modules.wireguard.features[3]">Multi-tunnels</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-wireguard.html</div>
                     <div class="module-links">
                         <a href="demo-wireguard.html" class="module-link module-link-demo" data-i18n="modules.wireguard.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-wireguard-dashboard" class="module-link module-link-github" data-i18n="modules.wireguard.github">GitHub</a>
@@ -983,6 +1066,13 @@
                         <li data-i18n="modules.netdata.features[2]">Alertes configurables</li>
                         <li data-i18n="modules.netdata.features[3]">Historique des métriques</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-netdata.html</div>
                     <div class="module-links">
                         <a href="demo-netdata.html" class="module-link module-link-demo" data-i18n="modules.netdata.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-netdata-dashboard" class="module-link module-link-github" data-i18n="modules.netdata.github">GitHub</a>
@@ -1000,6 +1090,13 @@
                         <li data-i18n="modules.netifyd.features[2]">Catégorisation protocoles</li>
                         <li data-i18n="modules.netifyd.features[3]">Statistiques détaillées</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-netifyd.html</div>
                     <div class="module-links">
                         <a href="demo-netifyd.html" class="module-link module-link-demo" data-i18n="modules.netifyd.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-netifyd-dashboard" class="module-link module-link-github" data-i18n="modules.netifyd.github">GitHub</a>
@@ -1017,6 +1114,13 @@
                         <li data-i18n="modules.clientGuardian.features[2]">Limitations bande passante</li>
                         <li data-i18n="modules.clientGuardian.features[3]">Monitoring temps réel</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-client-guardian.html</div>
                     <div class="module-links">
                         <a href="demo-client-guardian.html" class="module-link module-link-demo" data-i18n="modules.clientGuardian.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-client-guardian" class="module-link module-link-github" data-i18n="modules.clientGuardian.github">GitHub</a>
@@ -1034,6 +1138,13 @@
                         <li data-i18n="modules.networkModes.features[2]">Templates réseau</li>
                         <li data-i18n="modules.networkModes.features[3]">Multi-WAN</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:31%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.3.1 · 0.31 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-network-modes.html</div>
                     <div class="module-links">
                         <a href="demo-network-modes.html" class="module-link module-link-demo" data-i18n="modules.networkModes.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-network-modes" class="module-link module-link-github" data-i18n="modules.networkModes.github">GitHub</a>
@@ -1051,6 +1162,13 @@
                         <li data-i18n="modules.trafficShaper.features[2]">Gestion congestion</li>
                         <li data-i18n="modules.trafficShaper.features[3]">Priorisation intelligente</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-traffic-shaper.html</div>
                     <div class="module-links">
                         <a href="demo-traffic-shaper.html" class="module-link module-link-demo" data-i18n="modules.trafficShaper.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-traffic-shaper" class="module-link module-link-github" data-i18n="modules.trafficShaper.github">GitHub</a>
@@ -1068,6 +1186,13 @@
                         <li data-i18n="modules.cdnCache.features[2]">Transparent proxy</li>
                         <li data-i18n="modules.cdnCache.features[3]">Statistiques cache</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:22%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.2.2 · 0.22 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-cdn-cache.html</div>
                     <div class="module-links">
                         <a href="demo-cdn-cache.html" class="module-link module-link-demo" data-i18n="modules.cdnCache.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-cdn-cache" class="module-link module-link-github" data-i18n="modules.cdnCache.github">GitHub</a>
@@ -1085,6 +1210,13 @@
                         <li data-i18n="modules.secuboxHub.features[2]">Notifications globales</li>
                         <li data-i18n="modules.secuboxHub.features[3]">Vue d'ensemble</li>
                     </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:31%;"></div>
+                        </div>
+                        <div class="module-progress-label">v0.3.1 · 0.31 / 1.00</div>
+                    </div>
+                    <div class="module-demo-sticker">🎬 demo-secubox-hub.html</div>
                     <div class="module-links">
                         <a href="demo-secubox-hub.html" class="module-link module-link-demo" data-i18n="modules.secuboxHub.demo">Démo</a>
                         <a href="https://github.com/cybermood-eu/luci-app-secubox" class="module-link module-link-github" data-i18n="modules.secuboxHub.github">GitHub</a>

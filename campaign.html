@@ -127,10 +127,14 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
 .phase-date { font-size: 14px; color: var(--sb-cyan); font-family: 'JetBrains Mono', monospace; }
 .phase-content { margin-left: 80px; padding: 24px; background: var(--sb-bg-card); border: 1px solid var(--sb-border); border-radius: 16px; }
 .phase-items { list-style: none; }
-.phase-items li { padding: 10px 0; font-size: 15px; color: var(--sb-text-muted); display: flex; align-items: center; gap: 12px; }
-.phase-items li::before { content: '→'; color: var(--sb-cyan); }
+.phase-items li { padding: 10px 0; font-size: 15px; color: var(--sb-text-muted); position: relative; padding-left: 28px; }
+.phase-items li::before { content: '→'; color: var(--sb-cyan); position: absolute; left: 0; }
 .phase-items li.done { color: var(--sb-text); }
 .phase-items li.done::before { content: '✓'; color: #22c55e; }
+.phase-progress { margin-top: 6px; }
+.phase-progress-bar { width: 100%; height: 4px; background: rgba(148,163,184,0.2); border-radius: 999px; overflow: hidden; }
+.phase-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg,#10b981,#06b6d4); border-radius: 999px; transition: width 0.8s ease-out; }
+.phase-progress-label { margin-top: 4px; font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--sb-text-muted); text-align: right; }
 
 /* Why Section */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -443,12 +447,96 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
         </div>
         <div class="phase-content">
           <ul class="phase-items">
-            <li class="done">Dashboards CrowdSec v0.2.2, Netdata v0.2.2, Netifyd v0.2.2 pour LuCI</li>
-            <li class="done">Dashboard WireGuard v0.2.2 avec génération QR codes</li>
-            <li class="done">Client Guardian v0.2.2 (NAC, portail captif)</li>
-            <li class="done">Network Modes v0.3.1 (5 topologies réseau)</li>
-            <li class="done">System Hub v0.3.2 (centre de contrôle unifié)</li>
-            <li class="done">SecuBox Hub v0.3.1 (dashboard central)</li>
+            <li class="done">SecuBox Central Hub
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:31%;"></div></div>
+                <div class="phase-progress-label">v0.3.1 · 0.31 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">System Hub
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:32%;"></div></div>
+                <div class="phase-progress-label">v0.3.2 · 0.32 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Traffic Shaper
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">CrowdSec Dashboard
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Netdata Dashboard
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Netifyd Dashboard
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Network Modes
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:31%;"></div></div>
+                <div class="phase-progress-label">v0.3.1 · 0.31 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">WireGuard Dashboard
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Auth Guardian
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Client Guardian (Captive Portal v1.0.0)
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Bandwidth Manager
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Media Flow
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">CDN Cache
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">VHost Manager
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">KSM Manager
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -464,13 +552,48 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
         </div>
         <div class="phase-content">
           <ul class="phase-items">
-            <li class="done">Bandwidth Manager v0.2.2 (QoS, quotas, CAKE)</li>
-            <li class="done">Auth Guardian v0.2.2 (OAuth, vouchers)</li>
-            <li class="done">Media Flow v0.2.2 (DPI streaming)</li>
-            <li class="done">VHost Manager v0.2.2 (reverse proxy, SSL)</li>
-            <li class="done">Traffic Shaper v0.2.2 (CAKE, fq_codel, HTB)</li>
-            <li class="done">CDN Cache v0.2.2</li>
-            <li class="done">KSM Manager v0.2.2 (gestion clés crypto, HSM)</li>
+            <li class="done">Bandwidth Manager
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Auth Guardian
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Media Flow
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">VHost Manager
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">Traffic Shaper
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">CDN Cache
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
+            <li class="done">KSM Manager
+              <div class="phase-progress">
+                <div class="phase-progress-bar"><div class="phase-progress-fill" style="width:22%;"></div></div>
+                <div class="phase-progress-label">v0.2.2 · 0.22 / 1.00</div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -486,12 +609,24 @@ body { font-family: 'Inter', sans-serif; background: var(--sb-bg); color: var(--
         </div>
         <div class="phase-content">
           <ul class="phase-items">
-            <li class="done">Support ESPRESSObin Ultra (Armbian/OpenWrt)</li>
-            <li class="done">Support Sheeva64 avec WiFi 6</li>
-            <li class="done">Support MOCHAbin avec 10GbE</li>
-            <li class="done">Image SecuBox unifiée multi-plateformes</li>
-            <li>Tests de performance et optimisation</li>
-            <li>Finalisation documentation technique</li>
+            <li class="done">Support ESPRESSObin Ultra (Armbian/OpenWrt)
+              <div class="phase-progress"><div class="phase-progress-bar"><div class="phase-progress-fill" style="width:100%;"></div></div><div class="phase-progress-label">v1.0.0 · 1.00 / 1.00</div></div>
+            </li>
+            <li class="done">Support Sheeva64 avec WiFi 6
+              <div class="phase-progress"><div class="phase-progress-bar"><div class="phase-progress-fill" style="width:100%;"></div></div><div class="phase-progress-label">v1.0.0 · 1.00 / 1.00</div></div>
+            </li>
+            <li class="done">Support MOCHAbin avec 10GbE
+              <div class="phase-progress"><div class="phase-progress-bar"><div class="phase-progress-fill" style="width:100%;"></div></div><div class="phase-progress-label">v1.0.0 · 1.00 / 1.00</div></div>
+            </li>
+            <li class="done">Image SecuBox unifiée multi-plateformes
+              <div class="phase-progress"><div class="phase-progress-bar"><div class="phase-progress-fill" style="width:90%;"></div></div><div class="phase-progress-label">0.90 / 1.00</div></div>
+            </li>
+            <li>Tests de performance et optimisation
+              <div class="phase-progress"><div class="phase-progress-bar"><div class="phase-progress-fill" style="width:50%;"></div></div><div class="phase-progress-label">0.50 / 1.00</div></div>
+            </li>
+            <li>Finalisation documentation technique
+              <div class="phase-progress"><div class="phase-progress-bar"><div class="phase-progress-fill" style="width:40%;"></div></div><div class="phase-progress-label">0.40 / 1.00</div></div>
+            </li>
           </ul>
         </div>
       </div>
@@ -839,7 +974,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 
 <!-- Development Status Widget -->
-<script src="/dev-status-widget.js"></script>
+<script src="./dev-status-widget.js"></script>
 
 <!-- Multi-language System -->
 <script>

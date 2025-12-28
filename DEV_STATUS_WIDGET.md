@@ -28,7 +28,7 @@ Widget de statut de développement en temps réel pour SecuBox, affichant la pro
     <div id="dev-status-widget"></div>
 
     <!-- Load widget script -->
-    <script src="/dev-status-widget.js"></script>
+    <script src="./dev-status-widget.js"></script>
 </body>
 </html>
 ```
@@ -39,7 +39,7 @@ Le widget se charge automatiquement si le container `#dev-status-widget` existe.
 ```html
 <div id="my-custom-container"></div>
 
-<script src="/dev-status-widget.js"></script>
+<script src="./dev-status-widget.js"></script>
 <script>
     // Render in custom container
     DevStatusWidget.render('my-custom-container');

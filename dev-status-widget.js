@@ -4,13 +4,14 @@
  */
 
 const DevStatusWidget = {
+    targetVersion: '1.0.0',
     // Development milestones and progress
     milestones: {
         'modules-core': {
             name: 'Core Modules',
-            progress: 94,
+            progress: 100,
             total: 15,
-            completed: 14,
+            completed: 15,
             icon: '📦',
             color: '#10b981',
             items: [
@@ -23,7 +24,7 @@ const DevStatusWidget = {
                 { name: 'Network Modes', status: 'completed' },
                 { name: 'WireGuard Dashboard', status: 'completed' },
                 { name: 'Auth Guardian', status: 'completed' },
-                { name: 'Client Guardian (Captive Portal Fix)', status: 'in-progress' },
+                { name: 'Client Guardian (Captive Portal v1.0.0)', status: 'completed' },
                 { name: 'Bandwidth Manager', status: 'completed' },
                 { name: 'Media Flow', status: 'completed' },
                 { name: 'CDN Cache', status: 'completed' },
@@ -33,7 +34,7 @@ const DevStatusWidget = {
         },
         'hardware-support': {
             name: 'Hardware Support',
-            progress: 88,
+            progress: 90,
             total: 5,
             completed: 4,
             icon: '🔧',
@@ -78,6 +79,25 @@ const DevStatusWidget = {
             ]
         }
     },
+
+    // Per-module status overview
+    moduleStatus: [
+        { name: 'SecuBox Central Hub', version: '0.3.1', note: 'Dashboard central' },
+        { name: 'System Hub', version: '0.3.2', note: 'Centre de contrôle' },
+        { name: 'Traffic Shaper', version: '0.2.2', note: 'CAKE / fq_codel / HTB' },
+        { name: 'CrowdSec Dashboard', version: '0.2.2', note: 'Détection d’intrusions' },
+        { name: 'Netdata Dashboard', version: '0.2.2', note: 'Monitoring temps réel' },
+        { name: 'Netifyd Dashboard', version: '0.2.2', note: 'Intelligence applicative' },
+        { name: 'Network Modes', version: '0.3.1', note: '5 topologies réseau' },
+        { name: 'WireGuard Dashboard', version: '0.2.2', note: 'VPN + QR codes' },
+        { name: 'Auth Guardian', version: '0.2.2', note: 'OAuth / vouchers' },
+        { name: 'Client Guardian', version: '0.2.2', note: 'Patch portail captif + montée en version' },
+        { name: 'Bandwidth Manager', version: '0.2.2', note: 'QoS + quotas' },
+        { name: 'Media Flow', version: '0.2.2', note: 'DPI streaming' },
+        { name: 'CDN Cache', version: '0.2.2', note: 'Cache contenu local' },
+        { name: 'VHost Manager', version: '0.2.2', note: 'Reverse proxy / SSL' },
+        { name: 'KSM Manager', version: '0.2.2', note: 'Gestion clés / HSM' }
+    ],
 
     // Overall project statistics
     stats: {
@@ -171,6 +191,7 @@ const DevStatusWidget = {
                 ${this.renderHeader(overallProgress, currentPhase)}
                 ${this.renderMilestones()}
                 ${this.renderTimeline()}
+                ${this.renderModuleStatus()}
                 ${this.renderStats()}
             </div>
         `;
@@ -212,7 +233,28 @@ const DevStatusWidget = {
      * Render milestones section
      */
     renderMilestones() {
-        const milestonesHtml = Object.entries(this.milestones).map(([key, milestone]) => `
+        const milestonesHtml = Object.entries(this.milestones).map(([key, milestone]) => {
+            const itemsHtml = milestone.items.map(item => {
+                const moduleInfo = this.getModuleInfo(item.name);
+                const progressPercent = moduleInfo ? Math.round(this.getVersionProgress(moduleInfo) * 100) : null;
+                const progressLabel = moduleInfo ? this.formatVersionProgress(moduleInfo) : '';
+                return `
+                    <div class="dsw-item dsw-item-${item.status}">
+                        <span class="dsw-item-icon">${this.getStatusIcon(item.status)}</span>
+                        <span class="dsw-item-name">${item.name}</span>
+                        ${moduleInfo ? `
+                            <div class="dsw-item-progress">
+                                <div class="dsw-item-progress-bar">
+                                    <div class="dsw-item-progress-fill" data-progress="${progressPercent}"></div>
+                                </div>
+                                <div class="dsw-item-progress-label">${progressLabel}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            return `
             <div class="dsw-milestone" data-key="${key}">
                 <div class="dsw-milestone-header">
                     <div class="dsw-milestone-info">
@@ -220,24 +262,27 @@ const DevStatusWidget = {
                         <span class="dsw-milestone-name">${milestone.name}</span>
                     </div>
                     <div class="dsw-milestone-stats">
-                        <span class="dsw-milestone-count">${milestone.completed}/${milestone.total}</span>
-                        <span class="dsw-milestone-percent" style="color: ${milestone.color}">${milestone.progress}%</span>
+                        <span class="dsw-milestone-count">${this.getMilestoneCompletion(milestone)}</span>
+                        <span class="dsw-milestone-percent" style="color: ${milestone.color}">${this.getMilestonePercentage(milestone)}%</span>
+                        <span class="dsw-milestone-fraction">${this.getMilestoneProgressFraction(milestone)}</span>
                     </div>
+                </div>
+                <div class="dsw-milestone-mini-progress">
+                    <div class="dsw-milestone-mini-bar">
+                        <div class="dsw-milestone-mini-fill" data-progress="${Math.round(this.getMilestoneProgressValue(milestone) * 100)}"></div>
+                    </div>
+                    <div class="dsw-milestone-mini-label">${this.getMilestoneProgressFraction(milestone)}</div>
                 </div>
                 <div class="dsw-progress-bar-container">
                     <div class="dsw-progress-bar-fill" data-progress="${milestone.progress}"
                          style="background: ${milestone.color}"></div>
                 </div>
                 <div class="dsw-milestone-items">
-                    ${milestone.items.map(item => `
-                        <div class="dsw-item dsw-item-${item.status}">
-                            <span class="dsw-item-icon">${this.getStatusIcon(item.status)}</span>
-                            <span class="dsw-item-name">${item.name}</span>
-                        </div>
-                    `).join('')}
+                    ${itemsHtml}
                 </div>
             </div>
-        `).join('');
+        `;
+        }).join('');
 
         return `
             <div class="dsw-milestones">
@@ -280,6 +325,48 @@ const DevStatusWidget = {
                 <h4 class="dsw-section-title">Project Timeline</h4>
                 <div class="dsw-timeline-container">
                     ${timelineHtml}
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Render per-module status grid
+     */
+    renderModuleStatus() {
+        const modulesHtml = this.moduleStatus.map(module => {
+            const status = this.getModuleStatus(module);
+            const progressPercent = Math.round(this.getVersionProgress(module) * 100);
+            const statusLabel = status === 'completed'
+                ? `Prêt pour v${this.targetVersion}`
+                : `Progression vers v${this.targetVersion}`;
+            return `
+            <div class="dsw-module-card dsw-module-${status}">
+                <div class="dsw-module-header">
+                    <span class="dsw-module-name">${module.name}</span>
+                    <span class="dsw-module-version">${this.formatVersion(module.version)}</span>
+                </div>
+                <div class="dsw-module-status-row">
+                    <span class="dsw-module-status-indicator">${status === 'completed' ? '✅' : '🔄'}</span>
+                    <span class="dsw-module-status-label">${statusLabel}</span>
+                </div>
+                <div class="dsw-module-progress">
+                    <div class="dsw-module-progress-bar">
+                        <div class="dsw-module-progress-fill" data-progress="${progressPercent}"></div>
+                    </div>
+                    <div class="dsw-module-progress-label">${this.formatVersionProgress(module)}</div>
+                </div>
+                <div class="dsw-module-target">Objectif&nbsp;: v${this.targetVersion}</div>
+                <div class="dsw-module-note">${module.note}</div>
+            </div>
+        `;
+        }).join('');
+
+        return `
+            <div class="dsw-modules">
+                <h4 class="dsw-section-title">Modules & Versions</h4>
+                <div class="dsw-modules-grid">
+                    ${modulesHtml}
                 </div>
             </div>
         `;
@@ -343,6 +430,99 @@ const DevStatusWidget = {
     },
 
     /**
+     * Get milestone completion text (completed/total)
+     */
+    getMilestoneCompletion(milestone) {
+        return `${milestone.completed || 0}/${milestone.total || milestone.items.length || 0}`;
+    },
+
+    /**
+     * Calculate milestone progress percentage from items
+     */
+    getMilestonePercentage(milestone) {
+        if (milestone.progress)
+            return milestone.progress;
+        const items = milestone.items || [];
+        if (!items.length)
+            return 0;
+        const completed = items.filter(item => item.status === 'completed').length;
+        return Math.round((completed / items.length) * 100);
+    },
+
+    /**
+     * Get milestone progress value (0-1)
+     */
+    getMilestoneProgressValue(milestone) {
+        const total = milestone.total || milestone.items.length || 0;
+        if (!total)
+            return 0;
+        const completed = milestone.completed || milestone.items.filter(item => item.status === 'completed').length;
+        return Math.min(1, completed / total);
+    },
+
+    /**
+     * Return X.Y / 1 fractional representation of progress towards target version
+     */
+    getMilestoneProgressFraction(milestone) {
+        const fraction = this.getMilestoneProgressValue(milestone);
+        return `${fraction.toFixed(1)} / 1`;
+    },
+
+    /**
+     * Format version with leading v
+     */
+    formatVersion(version) {
+        if (!version)
+            return '';
+        return version.startsWith('v') ? version : `v${version}`;
+    },
+
+    versionToNumber(version) {
+        if (!version)
+            return 0;
+        const parts = version.toString().replace(/^v/, '').split('.');
+        const major = parseInt(parts[0], 10) || 0;
+        const minor = parseInt(parts[1], 10) || 0;
+        const patch = parseInt(parts[2], 10) || 0;
+        return major + (minor / 10) + (patch / 100);
+    },
+
+    /**
+     * Compare semantic versions (returns positive if v1 >= v2)
+     */
+    compareVersions(v1, v2) {
+        const diff = this.versionToNumber(v1) - this.versionToNumber(v2);
+        if (diff > 0)
+            return 1;
+        if (diff < 0)
+            return -1;
+        return 0;
+    },
+
+    /**
+     * Determine module status versus the target version
+     */
+    getModuleStatus(module) {
+        return this.compareVersions(module.version, this.targetVersion) >= 0 ? 'completed' : 'in-progress';
+    },
+
+    getVersionProgress(module) {
+        const current = this.versionToNumber(module.version);
+        const target = this.versionToNumber(this.targetVersion);
+        if (!target)
+            return 0;
+        return Math.min(1, current / target);
+    },
+
+    formatVersionProgress(module) {
+        return `${this.getVersionProgress(module).toFixed(2)} / 1.00`;
+    },
+
+    getModuleInfo(name) {
+        return this.moduleStatus.find(module => module.name === name);
+    },
+
+    /**
      * Animate progress bars
      */
     animateProgressBars() {
@@ -352,6 +532,10 @@ const DevStatusWidget = {
                 if (element.classList.contains('dsw-progress-bar-fill')) {
                     element.style.width = `${progress}%`;
                 } else if (element.classList.contains('dsw-timeline-progress-fill')) {
+                    element.style.width = `${progress}%`;
+                } else if (element.classList.contains('dsw-milestone-mini-fill')) {
+                    element.style.width = `${progress}%`;
+                } else if (element.classList.contains('dsw-module-progress-fill')) {
                     element.style.width = `${progress}%`;
                 }
             });
@@ -532,6 +716,12 @@ const DevStatusWidget = {
                 font-family: 'JetBrains Mono', monospace;
             }
 
+            .dsw-milestone-fraction {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 13px;
+                color: var(--sb-text-muted, #94a3b8);
+            }
+
             .dsw-progress-bar-container {
                 height: 8px;
                 background: var(--sb-bg, #0f1019);
@@ -547,6 +737,36 @@ const DevStatusWidget = {
                 transition: width 1s ease-out;
             }
 
+            .dsw-milestone-mini-progress {
+                margin: 8px 0 12px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .dsw-milestone-mini-bar {
+                width: 100%;
+                height: 4px;
+                background: rgba(148, 163, 184, 0.2);
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .dsw-milestone-mini-fill {
+                height: 100%;
+                width: 0;
+                border-radius: 999px;
+                background: linear-gradient(90deg, var(--sb-green, #10b981), var(--sb-cyan, #06b6d4));
+                transition: width 0.8s ease-out;
+            }
+
+            .dsw-milestone-mini-label {
+                font-size: 12px;
+                font-family: 'JetBrains Mono', monospace;
+                color: var(--sb-text-muted, #94a3b8);
+                text-align: right;
+            }
+
             .dsw-milestone-items {
                 display: flex;
                 flex-direction: column;
@@ -555,26 +775,58 @@ const DevStatusWidget = {
 
             .dsw-item {
                 display: flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 13px;
-                padding: 6px 0;
+                flex-direction: column;
+                gap: 6px;
+                padding: 8px 0;
             }
 
             .dsw-item-icon {
-                font-size: 14px;
+                font-size: 16px;
             }
 
-            .dsw-item-completed {
+            .dsw-item-name {
+                font-size: 13px;
+                font-weight: 600;
+            }
+
+            .dsw-item-completed .dsw-item-name {
                 color: var(--sb-text-muted, #94a3b8);
             }
 
-            .dsw-item-in-progress {
+            .dsw-item-in-progress .dsw-item-name {
                 color: var(--sb-orange, #f97316);
             }
 
-            .dsw-item-planned {
+            .dsw-item-planned .dsw-item-name {
                 color: var(--sb-text-dim, #64748b);
+            }
+
+            .dsw-item-progress {
+                width: 100%;
+            }
+
+            .dsw-item-progress-bar {
+                width: 100%;
+                height: 4px;
+                background: rgba(148, 163, 184, 0.15);
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .dsw-item-progress-fill {
+                height: 100%;
+                width: 0;
+                background: linear-gradient(90deg, #10b981, #06b6d4);
+                border-radius: 999px;
+                transition: width 0.8s ease-out;
+            }
+
+            .dsw-item-progress-label {
+                text-align: right;
+                font-size: 11px;
+                font-family: 'JetBrains Mono', monospace;
+                color: var(--sb-text-muted, #94a3b8);
+                margin-top: 2px;
             }
 
             .dsw-timeline {
@@ -687,6 +939,96 @@ const DevStatusWidget = {
                 color: var(--sb-text-muted, #94a3b8);
                 min-width: 40px;
                 text-align: right;
+            }
+
+            .dsw-modules-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 16px;
+            }
+
+            .dsw-module-card {
+                background: var(--sb-bg, #0f1019);
+                border: 1px solid var(--sb-border, #2a2a3a);
+                border-radius: 12px;
+                padding: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .dsw-module-card:hover {
+                border-color: var(--sb-cyan, #06b6d4);
+                transform: translateY(-2px);
+            }
+
+            .dsw-module-header {
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                font-weight: 600;
+            }
+
+            .dsw-module-version {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 13px;
+                color: var(--sb-text-muted, #94a3b8);
+            }
+
+            .dsw-module-status-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .dsw-module-status-indicator {
+                font-size: 16px;
+            }
+
+            .dsw-module-target {
+                font-size: 12px;
+                color: var(--sb-text-muted, #94a3b8);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .dsw-module-note {
+                font-size: 13px;
+                color: var(--sb-text-muted, #94a3b8);
+            }
+
+            .dsw-module-progress {
+                margin-top: 4px;
+            }
+
+            .dsw-module-progress-bar {
+                width: 100%;
+                height: 6px;
+                background: var(--sb-bg, #0f1019);
+                border-radius: 3px;
+                overflow: hidden;
+            }
+
+            .dsw-module-progress-fill {
+                height: 100%;
+                width: 0;
+                background: linear-gradient(90deg, #10b981, #06b6d4);
+                border-radius: 3px;
+                transition: width 0.8s ease-out;
+            }
+
+            .dsw-module-progress-label {
+                margin-top: 4px;
+                font-size: 12px;
+                font-family: 'JetBrains Mono', monospace;
+                color: var(--sb-text-muted, #94a3b8);
+                text-align: right;
+            }
+
+            .dsw-module-card.dsw-module-in-progress {
+                border-color: rgba(245, 158, 11, 0.4);
             }
 
             .dsw-stats-grid {

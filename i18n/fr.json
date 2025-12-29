@@ -15,7 +15,7 @@
   "hero": {
     "badge": "Version 2.0 disponible",
     "title": "Sécurisez votre réseau avec SecuBox",
-    "subtitle": "Suite complète de sécurité et gestion réseau pour OpenWrt. 13 modules intégrés pour transformer votre routeur en centre de contrôle intelligent.",
+    "subtitle": "Suite complète de sécurité et gestion réseau pour OpenWrt. 20 modules & apps intégrés pour transformer votre routeur en centre de contrôle intelligent.",
     "btnDemo": "🎮 Voir la démo",
     "btnInstall": "📥 Installation",
     "statsModules": "Modules",
@@ -25,7 +25,7 @@
   },
   "modules": {
     "tag": "📦 Modules",
-    "title": "13 modules pour tous vos besoins",
+    "title": "20 modules & apps pour tous vos besoins",
     "subtitle": "De la sécurité au monitoring, en passant par la gestion de bande passante et l'authentification.",
     "bandwidth": {
       "name": "Bandwidth Manager",

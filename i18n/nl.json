@@ -15,7 +15,7 @@
   "hero": {
     "badge": "Versie 2.0 beschikbaar",
     "title": "Beveilig uw netwerk met SecuBox",
-    "subtitle": "Complete beveiliging- en netwerkbeheersuite voor OpenWrt. 13 geïntegreerde modules om uw router om te zetten in een intelligent controlecentrum.",
+    "subtitle": "Complete beveiliging- en netwerkbeheersuite voor OpenWrt. 20 geïntegreerde modules & apps om uw router om te zetten in een intelligent controlecentrum.",
     "btnDemo": "🎮 Bekijk demo",
     "btnInstall": "📥 Installatie",
     "statsModules": "Modules",
@@ -25,7 +25,7 @@
   },
   "modules": {
     "tag": "📦 Modules",
-    "title": "13 modules voor al uw behoeften",
+    "title": "20 modules & apps voor al uw behoeften",
     "subtitle": "Van beveiliging tot monitoring, inclusief bandbreedtebeheer en authenticatie.",
     "bandwidth": {
       "name": "Bandwidth Manager",

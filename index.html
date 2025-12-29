@@ -866,10 +866,10 @@
                 <span class="animate-pulse">●</span>
                 <span data-i18n="hero.badge">Heavy Development Stage</span>
             </div>
-            <h1 data-i18n="hero.title">Sécurisez votre réseau avec SecuBox</h1>
-            <p data-i18n="hero.subtitle">
-                Suite complète de sécurité et gestion réseau pour OpenWrt.
-                13 modules intégrés pour transformer votre routeur en centre de contrôle intelligent.
+            <h1>Sécurisez, automatisez et déployez des apps en un clic</h1>
+            <p>
+                SecuBox 2025 ajoute l’App Store (Zigbee2MQTT, Lyrion, Domoticz), le wizard de premiers pas,
+                le mode réseau DMZ et les profils prêts à l’emploi pour OpenWrt 24.10.
             </p>
             <div class="hero-buttons">
                 <a href="#demo" class="btn btn-primary" data-i18n="hero.btnDemo">
@@ -882,11 +882,11 @@
             
             <div class="stats">
                 <div class="stat">
-                    <div class="stat-value">13</div>
-                    <div class="stat-label" data-i18n="hero.statsModules">Modules</div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Modules & Apps</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">4</div>
+                    <div class="stat-value">5</div>
                     <div class="stat-label" data-i18n="hero.statsArchs">Architectures</div>
                 </div>
                 <div class="stat">
@@ -894,8 +894,8 @@
                     <div class="stat-label" data-i18n="hero.statsOpenSource">Open Source</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">23.05</div>
-                    <div class="stat-label" data-i18n="hero.statsOpenWrt">OpenWrt</div>
+                    <div class="stat-value">24.10+</div>
+                    <div class="stat-label">OpenWrt</div>
                 </div>
             </div>
         </div>
@@ -1222,6 +1222,29 @@
                         <a href="https://github.com/CyberMind-FR/secubox-openwrt" class="module-link module-link-github" data-i18n="modules.secuboxHub.github">GitHub</a>
                     </div>
                 </div>
+
+                <!-- SecuBox App Store -->
+                <div class="module-card" style="--module-color: #0ea5e9;">
+                    <div class="module-icon">🛒</div>
+                    <h3>SecuBox App Store & Wizard</h3>
+                    <p>Manifestes Docker/LXC, wizard de premiers pas, profils (Home/Lab/Hardened/DMZ) et CLI `secubox-app` pour installer Zigbee2MQTT, Lyrion, Domoticz…</p>
+                    <ul class="module-features">
+                        <li>Installeurs Docker prêts à l’emploi (Zigbee2MQTT, Lyrion, Domoticz)</li>
+                        <li>Wizard 1<sup>ère</sup> mise en route (password, timezone, DMZ)</li>
+                        <li>Profils OS-like (home, lab, hardened, gateway DMZ)</li>
+                        <li>Manifestes JSON + CLI scriptable</li>
+                    </ul>
+                    <div class="module-progress">
+                        <div class="module-progress-bar">
+                            <div class="module-progress-fill" style="width:75%;"></div>
+                        </div>
+                        <div class="module-progress-label">v1.0 · 0.75 / 1.00</div>
+                    </div>
+                    <div class="module-links">
+                        <a href="docs/embedded/app-store.md" class="module-link module-link-demo">Documentation</a>
+                        <a href="https://github.com/CyberMind-FR/secubox-openwrt" class="module-link module-link-github">GitHub</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1238,13 +1261,13 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
-                    <h3 data-i18n="features.simple.title">Installation simple</h3>
-                    <p data-i18n="features.simple.description">Un simple `opkg install` et c'est prêt. Pas de configuration complexe.</p>
+                    <h3>Wizard &amp; Profils</h3>
+                    <p>Assistant de premiers pas (mot de passe, fuseau horaire, stockage, DMZ) et profils prêts à l’emploi (home, lab, hardened, gateway DMZ).</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
-                    <h3 data-i18n="features.luci.title">Intégration LuCI native</h3>
-                    <p data-i18n="features.luci.description">Interface intégrée à LuCI avec le même look & feel que votre routeur.</p>
+                    <h3>App Store Docker/LXC</h3>
+                    <p>Manifestes JSON + CLI `secubox-app` pour déployer Zigbee2MQTT, Lyrion, Domoticz, ainsi que vos propres images.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>

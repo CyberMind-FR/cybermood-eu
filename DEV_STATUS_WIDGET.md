@@ -62,11 +62,12 @@ URL directe: `http://192.168.1.1/cgi-bin/luci/admin/services/secubox/dev-status`
 - **Phase actuelle** - Affichage de la phase en cours avec période
 
 ### 2. Jalons de développement
-Quatre catégories principales:
-- **📦 Core Modules** (100%) - 13 modules principaux
-- **🔧 Hardware Support** (95%) - Support matériel GlobalScale
-- **🧪 Integration & Testing** (85%) - Tests et intégration
-- **🚀 Campaign Preparation** (70%) - Préparation de la campagne
+Cinq catégories principales:
+- **📦 Core Modules** (95%) - 15 modules principaux
+- **🔧 Hardware Support** (80%) - Support matériel GlobalScale
+- **🧪 Integration & Testing** (80%) - Tests et intégration
+- **🛒 App Store & Docker Apps** (70%) - Manifests + Docker apps
+- **🚀 Campaign Preparation** (45%) - Préparation de la campagne
 
 Chaque jalon affiche:
 - Icône et nom
@@ -78,20 +79,20 @@ Chaque jalon affiche:
 6 phases de développement:
 - **Phase 1**: Core Development (Q4 2024 - Q1 2025) ✅ 100%
 - **Phase 2**: Advanced Modules (Q1 - Q2 2025) ✅ 100%
-- **Phase 3**: Hardware Integration (Q2 - Q4 2025) 🔄 95%
-- **Phase 4**: Beta Testing (Q1 2026) 🔄 40%
+- **Phase 3**: Hardware Integration (Q2 - Q4 2025) 🔄 80%
+- **Phase 4**: Beta Testing (Q1 2026) 🔄 45%
 - **Phase 5**: Crowdfunding Campaign (Q2 2026) 📋 20%
 - **Phase 6**: Production & Delivery (Q3 - Q4 2026) 📋 0%
 
 ### 4. Statistiques du projet
-- **13** Modules
-- **11** Langues supportées
-- **4** Architectures
-- **15.0k** Lignes de code
-- **3** Contributeurs
-- **450** Commits
-- **12** Issues ouvertes
-- **87** Issues fermées
+- **18** Modules/apps (15 core + 3 App Store)
+- **12** Langues supportées
+- **5** Architectures
+- **32k** Lignes de code
+- **6** Contributeurs
+- **1.2k** Commits
+- **3** Issues ouvertes
+- **140** Issues fermées
 
 ## 🎯 Statuts des items
 

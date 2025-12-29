@@ -9,70 +9,84 @@ const DevStatusWidget = {
     milestones: {
         'modules-core': {
             name: 'Core Modules',
-            progress: 70,
+            progress: 95,
             total: 15,
-            completed: 0,
+            completed: 14,
             icon: '📦',
-            color: '#f97316',
+            color: '#10b981',
             items: [
-                { name: 'SecuBox Central Hub', status: 'in-progress' },
-                { name: 'System Hub', status: 'in-progress' },
-                { name: 'Traffic Shaper', status: 'in-progress' },
-                { name: 'CrowdSec Dashboard', status: 'in-progress' },
-                { name: 'Netdata Dashboard', status: 'in-progress' },
-                { name: 'Netifyd Dashboard', status: 'in-progress' },
-                { name: 'Network Modes', status: 'in-progress' },
-                { name: 'WireGuard Dashboard', status: 'in-progress' },
-                { name: 'Auth Guardian', status: 'in-progress' },
-                { name: 'Client Guardian (Captive Portal v1.0.0)', status: 'in-progress' },
-                { name: 'Bandwidth Manager', status: 'in-progress' },
-                { name: 'Media Flow', status: 'in-progress' },
-                { name: 'CDN Cache', status: 'in-progress' },
-                { name: 'VHost Manager', status: 'in-progress' },
-                { name: 'KSM Manager', status: 'in-progress' }
+                { name: 'SecuBox Central Hub', status: 'completed' },
+                { name: 'System Hub', status: 'completed' },
+                { name: 'Traffic Shaper', status: 'completed' },
+                { name: 'CrowdSec Dashboard', status: 'completed' },
+                { name: 'Netdata Dashboard', status: 'completed' },
+                { name: 'Netifyd Dashboard', status: 'completed' },
+                { name: 'Network Modes (DMZ mode)', status: 'completed' },
+                { name: 'WireGuard Dashboard', status: 'completed' },
+                { name: 'Auth Guardian', status: 'completed' },
+                { name: 'Client Guardian (Captive Portal v1.0.0)', status: 'completed' },
+                { name: 'Bandwidth Manager', status: 'completed' },
+                { name: 'Media Flow', status: 'completed' },
+                { name: 'CDN Cache', status: 'completed' },
+                { name: 'VHost Manager (UCI overhaul)', status: 'completed' },
+                { name: 'KSM Manager', status: 'beta' }
             ]
         },
         'hardware-support': {
             name: 'Hardware Support',
-            progress: 65,
+            progress: 80,
             total: 5,
-            completed: 0,
+            completed: 4,
             icon: '🔧',
             color: '#f59e0b',
             items: [
-                { name: 'x86-64 Tier 1 (PC / VM)', status: 'in-progress' },
-                { name: 'ARM Cortex-A72 Tier 1 (MOCHAbin / RPi4)', status: 'in-progress' },
-                { name: 'ARM Cortex-A53 Tier 1 (ESPRESSObin / Sheeva64)', status: 'in-progress' },
+                { name: 'x86-64 Tier 1 (PC / VM)', status: 'completed' },
+                { name: 'ARM Cortex-A72 Tier 1 (MOCHAbin / RPi4)', status: 'completed' },
+                { name: 'ARM Cortex-A53 Tier 1 (ESPRESSObin / Sheeva64)', status: 'completed' },
                 { name: 'Tier 2 ARM64 / ARM32 Targets', status: 'in-progress' },
                 { name: 'Tier 2 MIPS Targets', status: 'planned' }
             ]
         },
         'integration': {
             name: 'Integration & Testing',
-            progress: 68,
+            progress: 80,
             total: 6,
-            completed: 0,
+            completed: 4,
             icon: '🧪',
             color: '#3b82f6',
             items: [
-                { name: 'LuCI Integration', status: 'in-progress' },
-                { name: 'RPCD Backends', status: 'in-progress' },
-                { name: 'ubus APIs', status: 'in-progress' },
-                { name: 'Multi-platform Build', status: 'in-progress' },
+                { name: 'LuCI Integration', status: 'completed' },
+                { name: 'RPCD Backends', status: 'completed' },
+                { name: 'ubus APIs', status: 'completed' },
+                { name: 'Multi-platform Build', status: 'completed' },
                 { name: 'Documentation', status: 'in-progress' },
                 { name: 'Hardware Beta Testing', status: 'planned' }
             ]
         },
+        'apps-store': {
+            name: 'App Store & Docker Apps',
+            progress: 70,
+            total: 4,
+            completed: 3,
+            icon: '🛒',
+            color: '#06b6d4',
+            items: [
+                { name: 'Manifest + secubox-app CLI', status: 'completed' },
+                { name: 'Zigbee2MQTT App (Docker)', status: 'completed' },
+                { name: 'Lyrion Media Server App', status: 'completed' },
+                { name: 'Domoticz Home Automation App', status: 'in-progress' }
+            ]
+        },
         'campaign-prep': {
             name: 'Campaign Preparation',
-            progress: 60,
+            progress: 45,
             total: 5,
-            completed: 0,
+            completed: 2,
             icon: '🚀',
             color: '#8b5cf6',
             items: [
-                { name: 'Website Multi-language', status: 'in-progress' },
-                { name: 'Demo Pages', status: 'in-progress' },
+                { name: 'Website Multi-language', status: 'completed' },
+                { name: 'Demo Pages', status: 'completed' },
                 { name: 'Video Tutorials', status: 'planned' },
                 { name: 'Marketing Materials', status: 'planned' },
                 { name: 'Crowdfunding Setup', status: 'planned' }
@@ -82,33 +96,36 @@ const DevStatusWidget = {
 
     // Per-module status overview
     moduleStatus: [
-        { name: 'SecuBox Central Hub', version: '0.77', note: 'Dashboard central - Heavy Development' },
-        { name: 'System Hub', version: '0.80', note: 'Centre de contrôle - Heavy Development' },
-        { name: 'Traffic Shaper', version: '0.76', note: 'CAKE / fq_codel / HTB - Heavy Development' },
-        { name: 'CrowdSec Dashboard', version: '0.75', note: 'Détection d'intrusions - Heavy Development' },
-        { name: 'Netdata Dashboard', version: '0.80', note: 'Monitoring temps réel - Heavy Development' },
-        { name: 'Netifyd Dashboard', version: '0.62', note: 'Intelligence applicative - Heavy Development' },
-        { name: 'Network Modes', version: '0.74', note: '5 topologies réseau - Heavy Development' },
-        { name: 'WireGuard Dashboard', version: '0.78', note: 'VPN + QR codes - Heavy Development' },
-        { name: 'Auth Guardian', version: '0.72', note: 'OAuth / vouchers - Heavy Development' },
-        { name: 'Client Guardian', version: '0.67', note: 'Contrôle accès réseau - Heavy Development' },
-        { name: 'Bandwidth Manager', version: '0.68', note: 'QoS + quotas - Heavy Development' },
-        { name: 'Media Flow', version: '0.65', note: 'DPI streaming - Heavy Development' },
-        { name: 'CDN Cache', version: '0.60', note: 'Cache contenu local - Heavy Development' },
-        { name: 'VHost Manager', version: '0.70', note: 'Reverse proxy / SSL - Heavy Development' },
-        { name: 'KSM Manager', version: '0.63', note: 'Gestion clés / HSM - Heavy Development' }
+        { name: 'SecuBox Central Hub', version: '0.92', note: 'Dashboard central + Wizard/App Store' },
+        { name: 'System Hub', version: '0.88', note: 'Remote control, health, diagnostics' },
+        { name: 'Traffic Shaper', version: '0.86', note: 'CAKE / fq_codel / HTB ready' },
+        { name: 'CrowdSec Dashboard', version: '0.85', note: 'Threat intel + ban workflow' },
+        { name: 'Netdata Dashboard', version: '0.90', note: 'Real-time metrics with dark UI' },
+        { name: 'Netifyd Dashboard', version: '0.78', note: 'Application intelligence + DPI' },
+        { name: 'Network Modes', version: '0.83', note: 'Router/Relay/AP + DMZ mode' },
+        { name: 'WireGuard Dashboard', version: '0.82', note: 'VPN + QR codes' },
+        { name: 'Auth Guardian', version: '0.79', note: 'OAuth 2.0 / vouchers' },
+        { name: 'Client Guardian', version: '0.75', note: 'Captive portal + quarantine' },
+        { name: 'Bandwidth Manager', version: '0.74', note: 'QoS + quotas' },
+        { name: 'Media Flow', version: '0.71', note: 'Streaming DPI' },
+        { name: 'CDN Cache', version: '0.70', note: 'Local content cache' },
+        { name: 'VHost Manager', version: '0.84', note: 'UCI-driven reverse proxy + ACME' },
+        { name: 'KSM Manager', version: '0.70', note: 'Key & HSM orchestration' },
+        { name: 'Zigbee2MQTT App', version: '1.0', note: 'Docker app with wizard & profiles' },
+        { name: 'Lyrion Media Server App', version: '1.0', note: 'Docker app + vhost integration' },
+        { name: 'Domoticz App', version: '0.9', note: 'Home automation Docker app' }
     ],
 
     // Overall project statistics
     stats: {
         get modulesCount() { return DevStatusWidget.moduleStatus.length; },
-        languagesSupported: 11,
-        architectures: 13,
-        linesOfCode: 15000,
-        contributors: 3,
-        commits: 450,
-        openIssues: 1,
-        closedIssues: 87
+        languagesSupported: 12,
+        architectures: 5,
+        linesOfCode: 32000,
+        contributors: 6,
+        commits: 1200,
+        openIssues: 3,
+        closedIssues: 140
     },
 
     // Timeline data
@@ -124,29 +141,29 @@ const DevStatusWidget = {
             phase: 'Phase 2',
             name: 'Advanced Modules',
             period: 'Q1 - Q2 2025',
-            status: 'in-progress',
-            progress: 70
+            status: 'completed',
+            progress: 100
         },
         {
             phase: 'Phase 3',
             name: 'Hardware Integration',
             period: 'Q2 - Q4 2025',
             status: 'in-progress',
-            progress: 65
+            progress: 80
         },
         {
             phase: 'Phase 4',
             name: 'Beta Testing',
             period: 'Q1 2026',
             status: 'planned',
-            progress: 35
+            progress: 45
         },
         {
             phase: 'Phase 5',
             name: 'Crowdfunding Campaign',
             period: 'Q2 2026',
             status: 'planned',
-            progress: 15
+            progress: 20
         },
         {
             phase: 'Phase 6',

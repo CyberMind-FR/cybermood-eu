@@ -1,3 +1,5 @@
+'use strict';
+'require baseclass';
 /**
  * SecuBox Development Status Widget
  * Real-time development progress tracker
@@ -9,9 +11,9 @@ const DevStatusWidget = {
     milestones: {
         'modules-core': {
             name: 'Core Modules',
-            progress: 95,
+            progress: 100,
             total: 15,
-            completed: 14,
+            completed: 15,
             icon: '📦',
             color: '#10b981',
             items: [
@@ -21,20 +23,20 @@ const DevStatusWidget = {
                 { name: 'CrowdSec Dashboard', status: 'completed' },
                 { name: 'Netdata Dashboard', status: 'completed' },
                 { name: 'Netifyd Dashboard', status: 'completed' },
-                { name: 'Network Modes (DMZ mode)', status: 'completed' },
+                { name: 'Network Modes', status: 'completed' },
                 { name: 'WireGuard Dashboard', status: 'completed' },
                 { name: 'Auth Guardian', status: 'completed' },
                 { name: 'Client Guardian (Captive Portal v1.0.0)', status: 'completed' },
                 { name: 'Bandwidth Manager', status: 'completed' },
                 { name: 'Media Flow', status: 'completed' },
                 { name: 'CDN Cache', status: 'completed' },
-                { name: 'VHost Manager (UCI overhaul)', status: 'completed' },
-                { name: 'KSM Manager', status: 'beta' }
+                { name: 'VHost Manager', status: 'completed' },
+                { name: 'KSM Manager', status: 'completed' }
             ]
         },
         'hardware-support': {
             name: 'Hardware Support',
-            progress: 80,
+            progress: 90,
             total: 5,
             completed: 4,
             icon: '🔧',
@@ -44,14 +46,14 @@ const DevStatusWidget = {
                 { name: 'ARM Cortex-A72 Tier 1 (MOCHAbin / RPi4)', status: 'completed' },
                 { name: 'ARM Cortex-A53 Tier 1 (ESPRESSObin / Sheeva64)', status: 'completed' },
                 { name: 'Tier 2 ARM64 / ARM32 Targets', status: 'in-progress' },
-                { name: 'Tier 2 MIPS Targets', status: 'planned' }
+                { name: 'Tier 2 MIPS Targets', status: 'in-progress' }
             ]
         },
         'integration': {
             name: 'Integration & Testing',
-            progress: 80,
+            progress: 88,
             total: 6,
-            completed: 4,
+            completed: 5,
             icon: '🧪',
             color: '#3b82f6',
             items: [
@@ -59,36 +61,22 @@ const DevStatusWidget = {
                 { name: 'RPCD Backends', status: 'completed' },
                 { name: 'ubus APIs', status: 'completed' },
                 { name: 'Multi-platform Build', status: 'completed' },
-                { name: 'Documentation', status: 'in-progress' },
-                { name: 'Hardware Beta Testing', status: 'planned' }
-            ]
-        },
-        'apps-store': {
-            name: 'App Store & Docker Apps',
-            progress: 70,
-            total: 4,
-            completed: 3,
-            icon: '🛒',
-            color: '#06b6d4',
-            items: [
-                { name: 'Manifest + secubox-app CLI', status: 'completed' },
-                { name: 'Zigbee2MQTT App (Docker)', status: 'completed' },
-                { name: 'Lyrion Media Server App', status: 'completed' },
-                { name: 'Domoticz Home Automation App', status: 'in-progress' }
+                { name: 'Documentation', status: 'completed' },
+                { name: 'Hardware Beta Testing', status: 'in-progress' }
             ]
         },
         'campaign-prep': {
             name: 'Campaign Preparation',
-            progress: 45,
+            progress: 75,
             total: 5,
-            completed: 2,
+            completed: 3,
             icon: '🚀',
             color: '#8b5cf6',
             items: [
                 { name: 'Website Multi-language', status: 'completed' },
                 { name: 'Demo Pages', status: 'completed' },
-                { name: 'Video Tutorials', status: 'planned' },
-                { name: 'Marketing Materials', status: 'planned' },
+                { name: 'Video Tutorials', status: 'in-progress' },
+                { name: 'Marketing Materials', status: 'in-progress' },
                 { name: 'Crowdfunding Setup', status: 'planned' }
             ]
         }
@@ -96,38 +84,33 @@ const DevStatusWidget = {
 
     // Per-module status overview
     moduleStatus: [
-        { name: 'SecuBox Central Hub', version: '0.5.1', note: 'luci-app-secubox — wizard, App Store, dashboards' },
-        { name: 'System Hub', version: '0.5.1', note: 'luci-app-system-hub — remote control & diagnostics' },
-        { name: 'Traffic Shaper', version: '0.2.2', note: 'luci-app-traffic-shaper — CAKE/fq_codel QoS' },
-        { name: 'CrowdSec Dashboard', version: '0.2.2', note: 'luci-app-crowdsec-dashboard — threat intel + bans' },
-        { name: 'Netdata Dashboard', version: '0.2.2', note: 'luci-app-netdata-dashboard — live metrics' },
-        { name: 'Netifyd Dashboard', version: '0.2.2', note: 'luci-app-netifyd-dashboard — DPI insights' },
-        { name: 'Network Modes', version: '0.5.0', note: 'luci-app-network-modes — Router/AP/DMZ profiles' },
-        { name: 'WireGuard Dashboard', version: '0.2.2', note: 'luci-app-wireguard-dashboard — VPN management' },
-        { name: 'Auth Guardian', version: '0.2.2', note: 'luci-app-auth-guardian — OAuth 2.0 & vouchers' },
-        { name: 'Client Guardian', version: '0.2.2', note: 'luci-app-client-guardian — NAC + captive portal' },
-        { name: 'Bandwidth Manager', version: '0.2.2', note: 'luci-app-bandwidth-manager — QoS + quotas' },
-        { name: 'Media Flow', version: '0.2.2', note: 'luci-app-media-flow — streaming DPI' },
-        { name: 'CDN Cache', version: '0.4.1', note: 'luci-app-cdn-cache — local caching proxy' },
-        { name: 'VHost Manager', version: '0.4.1', note: 'luci-app-vhost-manager — reverse proxy & ACME' },
-        { name: 'SecuBox Theme', version: '0.4.7', note: 'luci-theme-secubox — design system tokens' },
-        { name: 'KSM Manager', version: '0.2.2', note: 'luci-app-ksm-manager — key & secret orchestration' },
-        { name: 'MQTT Bridge', version: '0.1.0', note: 'luci-app-mqtt-bridge — USB dongle MQTT broker' },
-        { name: 'Zigbee2MQTT App', version: '1.0.0', note: 'luci-app-zigbee2mqtt + secubox-app installer' },
-        { name: 'Lyrion Media Server App', version: '1.0.0', note: 'secubox-app-lyrion — Docker media server' },
-        { name: 'Domoticz App', version: '1.0.0', note: 'secubox-app-domoticz — home automation stack' }
+        { name: 'SecuBox Central Hub', version: '0.7.0-r6', note: 'Dashboard central + Appstore (5 apps)' },
+        { name: 'System Hub', version: '0.5.1-r2', note: 'Centre de contrôle' },
+        { name: 'Traffic Shaper', version: '0.4.0-r1', note: 'CAKE / fq_codel / HTB' },
+        { name: 'CrowdSec Dashboard', version: '0.5.0-r1', note: 'Détection d'intrusions' },
+        { name: 'Netdata Dashboard', version: '0.5.0-r1', note: 'Monitoring temps réel' },
+        { name: 'Netifyd Dashboard', version: '0.4.0-r1', note: 'Intelligence applicative' },
+        { name: 'Network Modes', version: '0.5.0-r1', note: '5 topologies réseau' },
+        { name: 'WireGuard Dashboard', version: '0.4.0-r1', note: 'VPN + QR codes' },
+        { name: 'Auth Guardian', version: '0.4.0-r1', note: 'OAuth / vouchers' },
+        { name: 'Client Guardian', version: '0.4.0-r1', note: 'Portail captif + contrôle d'accès' },
+        { name: 'Bandwidth Manager', version: '0.4.0-r1', note: 'QoS + quotas' },
+        { name: 'Media Flow', version: '0.4.0-r1', note: 'DPI streaming' },
+        { name: 'CDN Cache', version: '0.5.0-r1', note: 'Cache contenu local' },
+        { name: 'VHost Manager', version: '0.4.1-r3', note: 'Reverse proxy / SSL' },
+        { name: 'KSM Manager', version: '0.4.0-r1', note: 'Gestion clés / HSM' }
     ],
 
     // Overall project statistics
     stats: {
         get modulesCount() { return DevStatusWidget.moduleStatus.length; },
-        languagesSupported: 12,
-        architectures: 9,
-        linesOfCode: 26638,
-        contributors: 6,
-        commits: 1200,
-        openIssues: 3,
-        closedIssues: 140
+        languagesSupported: 11,
+        architectures: 13,
+        linesOfCode: 15000,
+        contributors: 3,
+        commits: 450,
+        openIssues: 1,
+        closedIssues: 87
     },
 
     // Timeline data
@@ -150,15 +133,15 @@ const DevStatusWidget = {
             phase: 'Phase 3',
             name: 'Hardware Integration',
             period: 'Q2 - Q4 2025',
-            status: 'in-progress',
-            progress: 80
+            status: 'completed',
+            progress: 100
         },
         {
             phase: 'Phase 4',
             name: 'Beta Testing',
             period: 'Q1 2026',
-            status: 'planned',
-            progress: 45
+            status: 'in-progress',
+            progress: 55
         },
         {
             phase: 'Phase 5',
@@ -1165,3 +1148,5 @@ if (document.readyState === 'loading') {
 
 // Export for use in other scripts
 window.DevStatusWidget = DevStatusWidget;
+
+return baseclass.extend(DevStatusWidget);

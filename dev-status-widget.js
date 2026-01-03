@@ -1,9 +1,10 @@
-'use strict';
-'require baseclass';
 /**
  * SecuBox Development Status Widget
  * Real-time development progress tracker
  */
+
+(function() {
+'use strict';
 
 const DevStatusWidget = {
     targetVersion: '1.0.0',
@@ -1149,4 +1150,4 @@ if (document.readyState === 'loading') {
 // Export for use in other scripts
 window.DevStatusWidget = DevStatusWidget;
 
-return baseclass.extend(DevStatusWidget);
+})();

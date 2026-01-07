@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecuBox Bug Bounty Challenge | CyberMind.FR</title>
+    <style>
+        :root {
+            --primary: #1E3A5F;
+            --secondary: #2ECC71;
+            --accent: #E74C3C;
+            --warning: #F39C12;
+            --dark: #2C3E50;
+            --light: #ECF0F1;
+            --white: #FFFFFF;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+            min-height: 100vh;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        header {
+            background: rgba(30, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { font-size: 2rem; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: var(--white); }
+        .logo-text span { color: var(--secondary); }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--secondary); }
+        
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232ECC71' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .hero-content { position: relative; z-index: 1; }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+        }
+        
+        .status-dot {
+            width: 10px; height: 10px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        h1 span { color: var(--secondary); }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .hero-description {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        
+        .btn {
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
+        }
+        .btn-primary:hover {
+            background: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .stats {
+            padding: 60px 0;
+            background: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item { padding: 30px; }
+        .stat-value { font-size: 3rem; font-weight: 700; color: var(--primary); display: block; }
+        .stat-label { color: var(--dark); font-size: 1rem; opacity: 0.8; }
+        
+        .rewards { padding: 80px 0; background: var(--light); }
+        
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
+        .section-title p { color: var(--dark); opacity: 0.7; }
+        
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .reward-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            border-top: 4px solid;
+        }
+        .reward-card:hover { transform: translateY(-10px); }
+        
+        .reward-card.critical { border-color: var(--accent); }
+        .reward-card.high { border-color: var(--warning); }
+        .reward-card.medium { border-color: #3498DB; }
+        .reward-card.low { border-color: var(--secondary); }
+        
+        .reward-icon { font-size: 3rem; margin-bottom: 15px; }
+        .reward-level { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+        .reward-title { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-bottom: 15px; }
+        
+        .reward-benefits {
+            text-align: left;
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+        .reward-benefits h4 {
+            font-size: 0.9rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .reward-benefits ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        .reward-benefits li {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .reward-benefits li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .reward-bonus {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, #2c4a70 100%);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.85rem;
+        }
+        .reward-bonus strong { color: var(--secondary); }
+        
+        .scope { padding: 80px 0; background: var(--white); }
+        
+        .scope-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .scope-card {
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--light);
+        }
+        .scope-card.in-scope {
+            border-color: var(--secondary);
+            background: rgba(46, 204, 113, 0.05);
+        }
+        .scope-card.out-scope {
+            border-color: var(--accent);
+            background: rgba(231, 76, 60, 0.05);
+        }
+        .scope-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        .scope-card ul { list-style: none; }
+        .scope-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .scope-card li:last-child { border-bottom: none; }
+        
+        .bonuses { padding: 80px 0; background: var(--light); }
+        
+        .bonuses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .bonus-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .bonus-icon {
+            font-size: 2rem;
+            background: var(--light);
+            padding: 15px;
+            border-radius: 12px;
+        }
+        .bonus-content h4 { color: var(--primary); margin-bottom: 5px; }
+        .bonus-content p { font-size: 0.9rem; color: #666; }
+        
+        .timeline {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #2c4a70 100%);
+            color: var(--white);
+        }
+        .timeline .section-title h2 { color: var(--white); }
+        .timeline .section-title p { color: rgba(255,255,255,0.7); }
+        
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0; right: 0;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+        }
+        
+        .timeline-item { text-align: center; position: relative; flex: 1; }
+        .timeline-dot {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-item.upcoming .timeline-dot { background: var(--warning); }
+        .timeline-item.planned .timeline-dot { background: rgba(255,255,255,0.3); }
+        .timeline-date { font-size: 0.9rem; opacity: 0.8; margin-bottom: 5px; }
+        .timeline-phase { font-weight: 700; font-size: 1.1rem; }
+        .timeline-status {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .timeline-item.active .timeline-status { background: var(--secondary); }
+        .timeline-item.upcoming .timeline-status { background: var(--warning); }
+        .timeline-item.planned .timeline-status { background: rgba(255,255,255,0.2); }
+        
+        .contact { padding: 80px 0; background: var(--white); text-align: center; }
+        
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--light);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .contact-item { margin: 20px 0; padding: 20px; background: var(--white); border-radius: 10px; }
+        .contact-label { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
+        .contact-value { font-size: 1.2rem; font-weight: 600; color: var(--primary); }
+        .contact-value a { color: var(--primary); text-decoration: none; }
+        .contact-value a:hover { color: var(--secondary); }
+        
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
+        .footer-logo span { color: var(--secondary); }
+        .footer-links { margin: 20px 0; }
+        .footer-links a { color: var(--light); text-decoration: none; margin: 0 15px; opacity: 0.8; }
+        .footer-links a:hover { opacity: 1; color: var(--secondary); }
+        .footer-copy { font-size: 0.9rem; opacity: 0.6; margin-top: 20px; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .timeline-container { flex-direction: column; gap: 30px; }
+            .timeline-container::before { display: none; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">Secu<span>Box</span></span>
+                </a>
+                <nav>
+                    <a href="#rewards">Reconnaissance</a>
+                    <a href="#scope">Périmètre</a>
+                    <a href="#bonuses">Bonus</a>
+                    <a href="#contact">Participer</a>
+                    <a href="https://cybermind.fr" target="_blank">CyberMind.FR</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    CAMPAGNE ACTIVE — Q1 2026
+                </div>
+                <h1>🛡️ <span>SecuBox</span></h1>
+                <p class="subtitle">Bug Bounty Challenge</p>
+                <p class="hero-description">
+                    Rejoignez le programme de recherche en sécurité de CyberMind.FR pour SecuBox — la suite de sécurité modulaire pour routeurs OpenWrt.
+                    <strong>Gagnez en visibilité, reconnaissance professionnelle et avantages exclusifs</strong> pour vos découvertes.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://secubox.cybermood.eu/bounty" class="btn btn-primary">🚀 Commencer la Chasse</a>
+                    <a href="#rewards" class="btn btn-secondary">🏆 Voir les Récompenses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value">🏆</span>
+                    <span class="stat-label">Hall of Fame Elite</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">24h</span>
+                    <span class="stat-label">Réponse Critique SLA</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Composants Ciblés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">25+</span>
+                    <span class="stat-label">Ans d'Expérience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="rewards" id="rewards">
+        <div class="container">
+            <div class="section-title">
+                <h2>🏆 Programme de Reconnaissance</h2>
+                <p>Visibilité, publicité et avantages exclusifs selon la sévérité</p>
+            </div>
+            <div class="rewards-grid">
+                <div class="reward-card critical">
+                    <div class="reward-icon">🔴</div>
+                    <div class="reward-level">CRITIQUE</div>
+                    <div class="reward-title">Elite Researcher</div>
+                    <div class="reward-benefits">
+                        <h4>Reconnaissance</h4>
+                        <ul>
+                            <li>Hall of Fame Elite</li>
+                            <li>Article dédié cybermind.fr</li>
+                            <li>Co-auteur avis sécurité (CVE)</li>
+                            <li>Mention LinkedIn officielle</li>
+                        </ul>
+                    </div>
+                    <div class="reward-bonus">
+                        <strong>🎁 Pack Premium:</strong> Invitation conférence • Recommandation CrowdSec Ambassador • Accès beta à vie
+                    </div>
+                </div>
+                
+                <div class="reward-card high">
+                    <div class="reward-icon">🟠</div>
+                    <div class="reward-level">ÉLEVÉ</div>
+                    <div class="reward-title">Senior Researcher</div>
+                    <div class="reward-benefits">
+                        <h4>Reconnaissance</h4>
+                        <ul>
+                            <li>Mention blog CyberMind.FR</li>
+                            <li>Profil page contributeurs</li>
+                            <li>Post réseaux sociaux dédié</li>
+                        </ul>
+                    </div>
+                    <div class="reward-bonus">
+                        <strong>🎁 Pack Avancé:</strong> Swag kit SecuBox • Early-access 12 mois • Certificat reconnaissance
+                    </div>
+                </div>
+                
+                <div class="reward-card medium">
+                    <div class="reward-icon">🔵</div>
+                    <div class="reward-level">MOYEN</div>
+                    <div class="reward-title">Contributor</div>
+                    <div class="reward-benefits">
+                        <h4>Reconnaissance</h4>
+                        <ul>
+                            <li>Hall of Fame public</li>
+                            <li>Mention release notes</li>
+                            <li>Badge contributeur</li>
+                        </ul>
+                    </div>
+                    <div class="reward-bonus">
+                        <strong>🎁 Pack Standard:</strong> Stickers & goodies • Early-access 6 mois
+                    </div>
+                </div>
+                
+                <div class="reward-card low">
+                    <div class="reward-icon">🟢</div>
+                    <div class="reward-level">FAIBLE</div>
+                    <div class="reward-title">Community Member</div>
+                    <div class="reward-benefits">
+                        <h4>Reconnaissance</h4>
+                        <ul>
+                            <li>Listing Hall of Fame</li>
+                            <li>Remerciements publics</li>
+                            <li>Badge participant</li>
+                        </ul>
+                    </div>
+                    <div class="reward-bonus">
+                        <strong>🎁 Pack Découverte:</strong> Badge numérique • Accès Discord VIP
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bonuses" id="bonuses">
+        <div class="container">
+            <div class="section-title">
+                <h2>⭐ Bonus de Participation</h2>
+                <p>Avantages supplémentaires pour les contributions exceptionnelles</p>
+            </div>
+            <div class="bonuses-grid">
+                <div class="bonus-card">
+                    <div class="bonus-icon">🥇</div>
+                    <div class="bonus-content">
+                        <h4>Pioneer</h4>
+                        <p>Première soumission d'une classe de vulnérabilité → Titre "Pioneer" + Interview blog</p>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-icon">📝</div>
+                    <div class="bonus-content">
+                        <h4>Qualité Exceptionnelle</h4>
+                        <p>Rapport détaillé avec PoC complet → Publication technique co-signée</p>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-icon">🔧</div>
+                    <div class="bonus-content">
+                        <h4>Correctif Proposé</h4>
+                        <p>Solution de remédiation incluse → Crédit commit GitHub + Contributor badge</p>
+                    </div>
+                </div>
+                <div class="bonus-card">
+                    <div class="bonus-icon">🔁</div>
+                    <div class="bonus-content">
+                        <h4>Trusted Researcher</h4>
+                        <p>3+ contributions valides → Statut VIP + Accès direct équipe sécurité</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scope" id="scope">
+        <div class="container">
+            <div class="section-title">
+                <h2>🎯 Périmètre du Programme</h2>
+                <p>Composants autorisés pour vos recherches</p>
+            </div>
+            <div class="scope-grid">
+                <div class="scope-card in-scope">
+                    <h3>✅ Dans le Périmètre</h3>
+                    <ul>
+                        <li>🔹 SecuBox Core — Orchestration & Config</li>
+                        <li>🔹 LuCI Dashboards — CrowdSec, Netdata, Netifyd</li>
+                        <li>🔹 API Endpoints — REST, ubus, rpcd</li>
+                        <li>🔹 Scripts d'installation & Packages</li>
+                        <li>🔹 Portail de documentation</li>
+                        <li>🔹 Authentification & Autorisation</li>
+                    </ul>
+                </div>
+                <div class="scope-card out-scope">
+                    <h3>❌ Hors Périmètre</h3>
+                    <ul>
+                        <li>🚫 Composants upstream (CrowdSec, Netdata)</li>
+                        <li>🚫 Ingénierie sociale</li>
+                        <li>🚫 Attaques physiques</li>
+                        <li>🚫 DoS/DDoS</li>
+                        <li>🚫 Scans automatisés sans approbation</li>
+                        <li>🚫 Intégrations tierces</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline" id="timeline">
+        <div class="container">
+            <div class="section-title">
+                <h2>📅 Calendrier de la Campagne</h2>
+                <p>Phase Development Preview actuellement active</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-item active">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-date">Jan - Fév 2026</div>
+                    <div class="timeline-phase">Dev Preview</div>
+                    <span class="timeline-status">🟢 ACTIF</span>
+                </div>
+                <div class="timeline-item upcoming">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-date">Mar - Avr 2026</div>
+                    <div class="timeline-phase">Beta Testing</div>
+                    <span class="timeline-status">⏳ À VENIR</span>
+                </div>
+                <div class="timeline-item planned">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-date">Mai 2026 →</div>
+                    <div class="timeline-phase">Lancement Public</div>
+                    <span class="timeline-status">📋 PLANIFIÉ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>📬 Soumettre vos Découvertes</h2>
+                <p>Prêt à signaler une vulnérabilité?</p>
+            </div>
+            <div class="contact-box">
+                <div class="contact-item">
+                    <div class="contact-label">Portail Bug Bounty</div>
+                    <div class="contact-value">
+                        <a href="https://secubox.cybermood.eu/bounty">secubox.cybermood.eu/bounty</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Email Sécurité</div>
+                    <div class="contact-value">
+                        <a href="mailto:security@cybermind.fr">security@cybermind.fr</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Clé PGP</div>
+                    <div class="contact-value">
+                        <a href="https://cybermind.fr/.well-known/security.txt">cybermind.fr/.well-known/security.txt</a>
+                    </div>
+                </div>
+                <a href="https://secubox.cybermood.eu/bounty/register" class="btn btn-primary" style="margin-top: 30px;">
+                    🔐 S'inscrire Maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">🛡️ Secu<span>Box</span> Bug Bounty</div>
+            <div class="footer-links">
+                <a href="https://cybermind.fr">CyberMind.FR</a>
+                <a href="https://secubox.cybermood.eu">Portail SecuBox</a>
+                <a href="https://secubox.cybermood.eu/docs">Documentation</a>
+                <a href="https://secubox.cybermood.eu/bounty/rules">Règles</a>
+            </div>
+            <p class="footer-copy">
+                © 2026 CyberMind.FR — 25+ Ans d'Excellence Cybersécurité<br>
+                SecuBox Bug Bounty Challenge • Édition Development Preview
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

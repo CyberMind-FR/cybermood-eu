@@ -395,6 +395,30 @@
         .footer-links a:hover { opacity: 1; color: var(--secondary); }
         .footer-copy { font-size: 0.9rem; opacity: 0.6; margin-top: 20px; }
         
+        .link-soon {
+            color: #999 !important;
+            cursor: not-allowed !important;
+            text-decoration: none !important;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .link-soon::after {
+            content: " (bientôt)";
+            font-size: 0.75em;
+            font-style: italic;
+        }
+        .btn-disabled {
+            background: #555 !important;
+            border-color: #555 !important;
+            cursor: not-allowed !important;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .btn-disabled::after {
+            content: " — Bientôt";
+            font-size: 0.8em;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .subtitle { font-size: 1.2rem; }
@@ -438,7 +462,7 @@
                     <strong>Gagnez en visibilité, reconnaissance professionnelle et avantages exclusifs</strong> pour vos découvertes.
                 </p>
                 <div class="cta-buttons">
-                    <a href="https://secubox.cybermood.eu/bounty" class="btn btn-primary">🚀 Commencer la Chasse</a>
+                    <a href="mailto:security@cybermind.fr?subject=SecuBox%20Bug%20Bounty%20-%20Participation" class="btn btn-primary">🚀 Commencer la Chasse</a>
                     <a href="#rewards" class="btn btn-secondary">🏆 Voir les Récompenses</a>
                 </div>
             </div>
@@ -489,7 +513,7 @@
                         </ul>
                     </div>
                     <div class="reward-bonus">
-                        <strong>🎁 Pack Premium:</strong> Invitation conférence • Recommandation CrowdSec Ambassador • Accès beta à vie
+                        <strong>🎁 Pack Premium:</strong> Invitation conférence • Lettre de recommandation officielle • Accès beta à vie
                     </div>
                 </div>
                 
@@ -658,7 +682,8 @@
                 <div class="contact-item">
                     <div class="contact-label">Portail Bug Bounty</div>
                     <div class="contact-value">
-                        <a href="https://secubox.cybermood.eu/bounty">secubox.cybermood.eu/bounty</a>
+                        <a href="mailto:security@cybermind.fr?subject=SecuBox%20Bug%20Bounty%20-%20Soumission" class="link-soon" style="pointer-events:auto;opacity:1;color:var(--primary) !important;cursor:pointer !important;">security@cybermind.fr</a>
+                        <div style="font-size:0.8rem;color:#999;margin-top:4px;">Portail en cours de déploiement</div>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -670,11 +695,11 @@
                 <div class="contact-item">
                     <div class="contact-label">Clé PGP</div>
                     <div class="contact-value">
-                        <a href="https://cybermind.fr/.well-known/security.txt">cybermind.fr/.well-known/security.txt</a>
+                        <span class="link-soon">cybermind.fr/.well-known/security.txt</span>
                     </div>
                 </div>
-                <a href="https://secubox.cybermood.eu/bounty/register" class="btn btn-primary" style="margin-top: 30px;">
-                    🔐 S'inscrire Maintenant
+                <a href="mailto:security@cybermind.fr?subject=SecuBox%20Bug%20Bounty%20-%20Inscription" class="btn btn-primary" style="margin-top: 30px;">
+                    🔐 S'inscrire par Email
                 </a>
             </div>
         </div>
@@ -686,8 +711,8 @@
             <div class="footer-links">
                 <a href="https://cybermind.fr">CyberMind.FR</a>
                 <a href="https://secubox.cybermood.eu">Portail SecuBox</a>
-                <a href="https://secubox.cybermood.eu/docs">Documentation</a>
-                <a href="https://secubox.cybermood.eu/bounty/rules">Règles</a>
+                <a href="https://secubox.cybermood.eu/docs" class="link-soon">Documentation</a>
+                <a href="https://secubox.cybermood.eu/bounty/rules" class="link-soon">Règles</a>
             </div>
             <p class="footer-copy">
                 © 2026 CyberMind.FR — 25+ Ans d'Excellence Cybersécurité<br>
